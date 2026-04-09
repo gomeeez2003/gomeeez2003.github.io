@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrián Gómez | Mecatrónico & Maker Profesional</title>
+    <style>
+        html { scroll-behavior: smooth; }
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ffcc;
+            --accent-glow: rgba(0, 255, 204, 0.3);
+            --card-bg: #161616;
+            --nav-bg: rgba(10, 10, 10, 0.98);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        
+        /* --- ANIMACIONES GLOBALES --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 5px var(--accent-glow); } 50% { box-shadow: 0 0 20px var(--accent-color); } 100% { box-shadow: 0 0 5px var(--accent-glow); } }
+        @keyframes backgroundSlide { from { background-position: 0 0; } to { background-position: 100px 100px; } }
+
+        /* --- NUEVO MENÚ HAMBURGUESA ANIMADO --- */
+        nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; backdrop-filter: blur(5px); transition: all 0.3s; }
+        .nav-logo { color: #fff; font-weight: bold; font-size: 1.2rem; cursor: pointer; z-index: 1002; }
+        .nav-logo span { color: var(--accent-color); }
+        
+        /* Icono hamburguesa animado */
+        .menu-toggle { display: flex; flex-direction: column; cursor: pointer; width: 30px; gap: 6px; z-index: 1001; transition: all 0.3s; }
+        .menu-toggle span { background-color: white; height: 3px; width: 100%; border-radius: 2px; transition: all 0.3s ease; transform-origin: left center; }
+        
+        /* Estado 'X' del icono */
+        .menu-toggle.activo span:nth-child(1) { transform: rotate(45deg); background-color: var(--accent-color); }
+        .menu-toggle.activo span:nth-child(2) { opacity: 0; width: 0; }
+        .menu-toggle.activo span:nth-child(3) { transform: rotate(-45deg); background-color: var(--accent-color); }
+        
+        .nav-menu { display: none; position: absolute; top: 100%; right: 0; background-color: var(--card-bg); width: 250px; border-radius: 0 0 0 12px; box-shadow: -4px 4px 20px rgba(0,0,0,0.8); border-left: 1px solid #333; border-bottom: 1px solid #333; transform: translateX(100%); transition: transform 0.4s ease-in-out; }
+        .nav-menu.activo { display: block; transform: translateX(0); }
+        
+        .nav-menu ul { list-style: none; padding: 10px 0; margin: 0; }
+        .nav-menu li { cursor: pointer; color: #fff; padding: 18px 25px; border-bottom: 1px solid #222; font-weight: 500; transition: all 0.3s; position: relative; overflow: hidden; }
+        .nav-menu li:hover { color: var(--accent-color); padding-left: 30px; background-color: rgba(255,255,255,0.03); }
+        .nav-menu li:last-child { border-bottom: none; }
+        .nav-menu li a { color: inherit; text-decoration: none; display: block; }
+
+        /* --- NUEVO HERO SECTION (INICIO ESPECTACULAR) --- */
+        .hero { position: relative; padding: 8rem 2rem 6rem; text-align: center; overflow: hidden; background-color: #050505; border-bottom: 1px solid #222; }
+        
+        /* Fondo Técnico Animado (Líneas CAD sutiles) */
+        .hero-bg-animated { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 50px 50px; animation: backgroundSlide 20s linear infinite; z-index: 1; }
+        
+        .hero-container { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; animation: fadeIn 1s ease-out; }
+        
+        /* Foto de Perfil Esférica */
+        .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-color); box-shadow: 0 0 20px var(--accent-glow); transition: all 0.3s; }
+        .profile-photo:hover { transform: scale(1.05); box-shadow: 0 0 35px var(--accent-color); }
+        
+        .hero-text h1 { margin: 0; font-size: 3.5rem; color: #fff; line-height: 1.1; }
+        .hero-text h2 { color: var(--accent-color); font-weight: 300; font-size: 1.6rem; margin: 0.5rem 0 1.5rem; }
+        
+        /* Mini Bio Impactante */
+        .mini-bio { font-size: 1.2rem; color: #aaa; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.7; }
+        
+        /* Botones CTA Elegantes */
+        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 0.8rem 2rem; border-radius: 30px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; }
+        
+        .btn-primary { background-color: var(--accent-color); color: #000; border: 2px solid var(--accent-color); }
+        .btn-primary:hover { color: #fff; background-color: transparent; box-shadow: 0 0 20px var(--accent-color); }
+        
+        .btn-secondary { background-color: transparent; color: var(--accent-color); border: 2px solid var(--accent-color); }
+        .btn-secondary:hover { color: #000; background-color: var(--accent-color); }
+
+        /* Secciones Generales */
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; min-height: 80vh; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        
+        /* --- HABILIDADES CLAVE (NUEVA UBICACIÓN) --- */
+        .habilidades-clave { text-align: center; padding: 4rem 2rem; border-bottom: 1px solid #222; }
+        .habilidades-clave h3 { color: #fff; font-size: 1.8rem; margin-bottom: 2rem; }
+        .stack-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 800px; margin: 0 auto; }
+        .stack-item { background: #1a1a1a; color: #fff; padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.95rem; font-weight: bold; border: 1px solid #333; transition: all 0.3s; }
+        .stack-item:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-3px); }
+        
+        /* Reproductor Vertical */
+        .video-short-container { text-align: center; margin: 4rem 0; padding: 2rem; background-color: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid #222; }
+        .video-short-container iframe { width: 100%; max-width: 350px; height: 620px; border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,255,204,0.3); }
+        
+        /* Cuadrículas y Tarjetas */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        
+        .card-cat { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; border-bottom: 4px solid var(--accent-color); transition: all 0.3s; cursor: pointer; text-align: center; position: relative; }
+        .card-cat:hover { transform: translateY(-5px); border-bottom-color: #fff; animation: pulseGlow 2s infinite; }
+        .card-cat h3 { color: var(--accent-color); margin-top: 0; font-size: 1.5rem; }
+        
+        .card-proj { background-color: var(--card-bg); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #333; transition: all 0.3s; cursor: pointer; position: relative; }
+        .card-proj:hover { transform: translateX(8px); border-left-color: var(--accent-color); animation: pulseGlow 2s infinite; }
+        .card-proj h3 { color: #fff; margin: 0 0 0.5rem; }
+        .proj-tags { font-size: 0.8rem; color: #888; font-weight: bold; margin-bottom: 0.5rem; }
+        
+        .btn-volver { display: inline-flex; align-items: center; margin-bottom: 2rem; padding: 0.5rem 1rem; background-color: #222; color: #fff; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-volver:hover { background-color: var(--accent-color); color: #000; }
+        .project-header h2 { color: var(--accent-color); font-size: 2.8rem; margin: 0; }
+        
+        /* --- IMÁGENES Y VÍDEOS --- */
+        .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .media-proyecto { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
+        .media-proyecto:hover { transform: scale(1.02); }
+        iframe.media-proyecto { aspect-ratio: 16/9; height: auto; min-height: 250px; }
+        
+        /* Buscador */
+        .search-container { text-align: center; margin: 3rem 0 1rem; }
+        #buscador { padding: 1rem 2rem; width: 80%; max-width: 450px; border-radius: 30px; border: 1px solid #333; background: #1a1a1a; color: #fff; font-size: 1.1rem; outline: none; transition: border-color 0.3s; }
+        #buscador:focus { border-color: var(--accent-color); }
+        
+        footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: #666; border-top: 1px solid #222; margin-top: 4rem; }
+        
+        /* --- MODAL MEJORADO --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px); }
+        .modal-contenido { background-color: var(--card-bg); margin: 3% auto; padding: 40px; width: 90%; max-width: 900px; border-radius: 12px; border: 1px solid #333; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); animation: fadeIn 0.3s ease-out; max-height: 85vh; overflow-y: auto; }
+        .cerrar-modal { position: absolute; top: 15px; right: 25px; font-size: 35px; cursor: pointer; color: #888; transition: color 0.2s; z-index: 10; background: var(--card-bg); border-radius: 50%; width: 40px; height: 40px; text-align: center; line-height: 35px; }
+        .cerrar-modal:hover { color: var(--accent-color); }
+        .modal-contenido h2 { color: var(--accent-color); font-size: 2.2rem; margin-top: 0; }
+        .modal-contenido .modal-tags { font-size: 0.85rem; color: #aaa; font-weight: bold; margin-bottom: 1rem; display: block; }
+        .modal-contenido p { font-size: 1.1rem; color: var(--text-color); line-height: 1.7; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo" onclick="accionMenu('inicio')">Adrián<span>Gómez</span></div>
+        <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+            <ul>
+                <li onclick="accionMenu('inicio')">Inicio</li>
+                <li onclick="accionMenu('proyectos')">Proyectos</li>
+                <li onclick="accionMenu('buscar')">Buscar</li>
+                <li onclick="accionMenu('contacto')">Contacto</li>
+                <li><a href="img/adrian-gomez-cv.pdf" download>Descargar CV</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="pantalla-inicio" class="page">
+        <header class="hero">
+            <div class="hero-bg-animated"></div> <div class="hero-container">
+                <img src="img/adrian-gomez.jpg" alt="Adrián Gómez Álvarez" class="profile-photo">
+                
+                <div class="hero-text">
+                    <h1>Adrián Gómez Álvarez</h1>
+                    <h2>Técnico en Mecatrónica Industrial (Nº1 Promoción) | Maker & I+D</h2>
+                    
+                    <p class="mini-bio">
+                        Transformo ideas extremas en realidad funcional. Especializado en fusionar la ingeniería mecánica tradicional con la innovación electrónica de vanguardia y la fabricación aditiva.
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#lista-categorias" class="btn btn-primary" onclick="window.location.hash='#lista-categorias'; return false;">Explorar Proyectos</a>
+                        <a href="mailto:adriago777@gmail.com" class="btn btn-secondary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="habilidades-clave">
+            <h3>Habilidades de Ingeniería Key</h3>
+            <div class="stack-list">
+                <span class="stack-item">Siemens NX</span>
+                <span class="stack-item">KUKA Robótica</span>
+                <span class="stack-item">Impresión 3D FDM</span>
+                <span class="stack-item">Arduino/ArduinoIDE</span>
+                <span class="stack-item">Diseño PCBs</span>
+                <span class="stack-item">Soldadura Industrial TIG/MIG</span>
+                <span class="stack-item">Física de Alto Vacío</span>
+                <span class="stack-item">Mecanizado de Precisión</span>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="video-short-container">
+                <h3 style="color: #fff; margin-bottom: 1.5rem;">Integración Jet: Turbina en Chasis Ligero</h3>
+                <iframe src="https://www.youtube.com/embed/M02SRsOnkJQ" title="Bici Jet con Turbina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')" style="margin-top: 2rem; font-size: 1.1rem; padding: 0.8rem 1.5rem;">Ver Detalles de Ingeniería de Turbici →</div>
+            </section>
+
+            <div class="search-container">
+                <input type="text" id="buscador" placeholder="Buscar proyectos por keyword (ej: vacío, arduino...)" onkeyup="filtrarCategorias()">
+            </div>
+
+            <section class="grid" id="lista-categorias">
+                <div class="card-cat" data-keywords="mecanica precision soldadura carricoche ayunta ayuntamiento mecanizado" onclick="navegar('categoria-mecanica')">
+                    <h3>⚙️ Mecánica de Precisión</h3>
+                    <p>Diseño de prototipos, mecanizado, micromecánica, soldadura y sistemas neumáticos.</p>
+                </div>
+                <div class="card-cat" data-keywords="3d aditiva laminado nx sputtering actuador flexible prototipado pnemaflex" onclick="navegar('categoria-aditiva')">
+                    <h3>🧊 Fabricación Aditiva y CAD</h3>
+                    <p>Modelado NX, dominio del laminado y materiales para impresión de piezas funcionales.</p>
+                </div>
+                <div class="card-cat" data-keywords="electronica control arduino rc digifiz nixie flash pcbs electromedicina osciloscopio mk2" onclick="navegar('categoria-electronica')">
+                    <h3>⚡ Electrónica y Control</h3>
+                    <p>Programación Arduino, diseño de PCBs, diagnóstico de instrumentación y electromedicina.</p>
+                </div>
+                <div class="card-cat" data-keywords="ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio" onclick="navegar('categoria-ciencia')">
+                    <h3>🔬 Ciencia Aplicada e I+D</h3>
+                    <p>Investigación en física de alto vacío, tubos Nixie, plasma y sistemas láser.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="categoria-mecanica" class="page container">
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <div class="project-header">
+            <h2>Ingeniería Mecánica y Ensamblaje</h2>
+            <p style="color: #aaa; margin-bottom: 3rem;">Desarrollo de prototipos funcionales y estructuras mecánicas de precisión.</p>
+        </div>
+        <section class="grid" style="grid-template-columns: 1fr;">
+            <div class="card-proj" onclick="navegar('proyecto-turbici-inicio')" style="border-left-color: var(--accent-color); background: #1a1a1a;">
+                <div class="proj-tags">PROYECTO PRINCIPAL / MECÁNICA / JET</div>
+                <h3>Turbici: Integración Turbina Jet</h3>
+                <p>El proyecto que une todas mis habilidades. Adaptación de turbina jet a chasis ligero.</p>
+            </div>
+            <div class="card-proj" onclick="navegar('proyecto-estufa')">
+                <div class="proj-tags">SOLDADURA / ESTRUCTURAS</div>
+                <h3>Estufa de Metal (Prácticas Ayuntamiento)</h3>
+                <p>Diseño y fabricación de estufa de tubo cuadrado de metal con enfoque en soldadura profesional.</p>
+            </div>
+            <div class="card-proj" onclick="navegar('proyecto-caja-cerveza')">
+                <div class="proj-tags">MECÁNICA / MULTIDISCIPLINAR</div>
+                <h3>Triciclo Eléctrico Caja de Cerveza</h3>
+                <p>Vehículo de movilidad personal: patín eléctrico integrado en estructura de caja de cerveza.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-patinete')">
+                <div class="proj-tags">MECÁNICA / MOTOR GASOLINA</div>
+                <h3>Patinete para Niños Motorizado</h3>
+                <p>Integración mecánica de un motor de gasolina en un patinete infantil convencional.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-desmontaje')">
+                <div class="proj-tags">MICROMECÁNICA</div>
+                <h3>Desmontaje y Análisis de Máquina de Escribir</h3>
+                <p>Análisis forense de micromecánica automatizada: desmontaje del carrete y control.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-mecanizado')">
+                <div class="proj-tags">MECANIZADO / PRECISIÓN</div>
+                <h3>Trabajos de Mecanizado</h3>
+                <p>Procesos de mecanizado de piezas de precisión.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="categoria-aditiva" class="page container">
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <div class="project-header">
+            <h2>Fabricación Aditiva y Prototipado 3D</h2>
+            <p style="color: #aaa; margin-bottom: 3rem;">Modelado mecánico en Siemens NX y control del proceso de impresión para piezas funcionales.</p>
+        </div>
+        <section class="grid" style="grid-template-columns: 1fr;">
+            <div class="card-proj" onclick="navegar('proyecto-pneumaflex')" style="border-left-color: var(--accent-color); background: #1a1a1a;">
+                <div class="proj-tags">PROYECTO PRINCIPAL / PREMIO</div>
+                <h3>Pneumaflex: Actuadores Neumáticos Flexibles 3D</h3>
+                <p>El proyecto más galardonado. Desarrollo de actuadores flexibles e impresos en 3D para mecatrónica.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-3d')">
+                <div class="proj-tags">IMPRESIÓN 3D / MODELADO</div>
+                <h3>Proyectos de Impresión 3D Variados</h3>
+                <p>Galería extensa de modelado e impresión de piezas funcionales.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="categoria-electronica" class="page container">
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <div class="project-header">
+            <h2>Ingeniería de Control y Electrónica</h2>
+            <p style="color: #aaa; margin-bottom: 3rem;">Diseño de circuitos, programación de microcontroladores y diagnóstico de equipos.</p>
+        </div>
+        <section class="grid" style="grid-template-columns: 1fr;">
+            <div class="card-proj" onclick="navegar('proyecto-electromedicina')">
+                <div class="proj-tags">ELECTROMEDICINA / PRÁCTICAS</div>
+                <h3>Gestión y Reparación de Equipos de Electromedicina</h3>
+                <p>Experiencia diagnóstica en Hospital Txagorritxu con equipos médicos hospitalarios.</p>
+            </div>
+            <div class="card-proj" onclick="navegar('proyecto-osciloscopios')">
+                <div class="proj-tags">INSTRUMENTACIÓN / REPARACIÓN</div>
+                <h3>Restauración de Osciloscopios Analógicos</h3>
+                <p>Desmontaje, diagnóstico y reparación de instrumentación electrónica analógica clásica.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-arduino')">
+                <div class="proj-tags">ARDUINO / CONTROL</div>
+                <h3>Proyectos con Arduino</h3>
+                <p>Desarrollo de sistemas de control utilizando placas microcontroladoras Arduino.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-coche-arduino')">
+                <div class="proj-tags">ARDUINO / RC</div>
+                <h3>Coche RC Inteligente por App (Arduino)</h3>
+                <p>Desarrollo de vehículo controlado por microcontrolador y app móvil.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-extra')">
+                <div class="proj-tags">ELECTRÓNICA / VARIOS</div>
+                <h3>Proyectos Electrónicos Extra</h3>
+                <p>Recopilación de reparaciones y prototipos electrónicos adicionales.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="categoria-ciencia" class="page container">
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <div class="project-header">
+            <h2>Ciencia Aplicada e I+D Experimental</h2>
+            <p style="color: #aaa; margin-bottom: 3rem;">Investigación práctica sobre física de vacío, alto voltaje y óptica.</p>
+        </div>
+        <section class="grid" style="grid-template-columns: 1fr;">
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-baragrafo')">
+                <div class="proj-tags">ALTO VOLTAJE / VACÍO</div>
+                <h3>Barágrafo Nixie</h3>
+                <p>Experimentación técnica de alto voltaje con tubo barágrafo.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-tuboneon')">
+                <div class="proj-tags">ALTO VOLTAJE / GAS</div>
+                <h3>Tubos de Neón</h3>
+                <p>Pruebas y proyectos visuales utilizando tubos de gas de neón.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-tubonixie')">
+                <div class="proj-tags">ALTO VOLTAJE / NIXIE</div>
+                <h3>Tubos Nixie y Magic Eye</h3>
+                <p>Experimentación con tubos de vacío clásicos para displays numéricos.</p>
+            </div>
+            <div class="card-proj" onclick="abrirModalExtendido('tpl-microscopio')">
+                <div class="proj-tags">ÓPTICA / CIENCIA</div>
+                <h3>Proyectos de Microscopía</h3>
+                <p>Adaptaciones, mejoras e investigaciones utilizando equipo de microscopía.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="proyecto-turbici-inicio" class="page container">
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver al inicio</div>
+        <div class="project-header" style="text-align: center; margin-bottom: 3rem;">
+            <h2>Turbici: Integración Turbina Jet</h2>
+            <p><strong>El proyecto que une todas mis habilidades.</strong></p>
+        </div>
+        <section class="grid" style="margin-bottom: 4rem;">
+            <div class="card-cat" style="background: var(--card-bg);" onclick="navegar('turbici-mecanica')">
+                <h3>⚙️ Parte I: Mecánica</h3>
+                <p>Análisis de chasis, resolución térmica y adaptación.</p>
+            </div>
+            <div class="card-cat" style="background: var(--card-bg);" onclick="navegar('turbici-electronica')">
+                <h3>⚡ Parte II: Electrónica</h3>
+                <p>Controlador Arduino, señal RC y caja 3D.</p>
+            </div>
+        </section>
+    </div>
+    
+    <div id="turbici-mecanica" class="page container">
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="project-header"><h2>Turbici: Mecánica y Chasis</h2></div>
+        <div class="image-gallery">
+            <img src="img/turbici/mecanica-1.jpg" class="media-proyecto">
+            <img src="img/turbici/mecanica-2.jpg" class="media-proyecto">
+            <img src="img/turbici/mecanica-3.jpg" class="media-proyecto">
+            <img src="img/turbici/mecanica-4.jpg" class="media-proyecto">
+            <img src="img/turbici/mecanica-5.jpg" class="media-proyecto">
+            <img src="img/turbici/mecanica-6.jpg" class="media-proyecto">
+        </div>
+    </div>
+    
+    <div id="turbici-electronica" class="page container">
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="project-header"><h2>Turbici: Electrónica de Control</h2></div>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/M02SRsOnkJQ" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/turbici/electronica-1.jpg" class="media-proyecto">
+            <img src="img/turbici/electronica-2.jpg" class="media-proyecto">
+            <img src="img/turbici/electronica-3.jpg" class="media-proyecto">
+            <img src="img/turbici/electronica-4.jpg" class="media-proyecto">
+            <img src="img/turbici/electronica-5.jpg" class="media-proyecto">
+            <img src="img/turbici/electronica-6.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="proyecto-pneumaflex" class="page container">
+        <div class="btn-volver" onclick="navegar('categoria-aditiva')">← Volver a Aditiva</div>
+        <div class="project-header"><h2>Pneumaflex (Proyecto Galardonado)</h2></div>
+        <p>Desarrollo completo de actuadores neumáticos flexibles impresos en 3D para sistemas mecatrónicos automatizados.</p>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/pneumaflex/actuador-original.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/actuador-medida1.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/actuador-medida2.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/actuador-redondo1.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/actuador-redondo2.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/actuador-redondo3.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-7.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-8.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-9.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-10.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-11.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-12.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-13.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-14.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-15.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-16.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-17.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-18.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-19.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-20.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-21.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-22.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-23.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-24.jpg" class="media-proyecto">
+            <img src="img/pneumaflex/foto-25.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="proyecto-caja-cerveza" class="page container">
+        <div class="btn-volver" onclick="navegar('categoria-mecanica')">← Volver a Mecánica</div>
+        <div class="project-header"><h2>Triciclo Caja de Cerveza</h2></div>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/caja-cerveza/foto-1.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-2.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-3.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-4.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-5.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-6.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-7.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-8.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/foto-9.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="proyecto-electromedicina" class="page container">
+        <div class="btn-volver" onclick="navegar('categoria-electronica')">← Volver a Electrónica</div>
+        <div class="project-header"><h2>Equipos de Electromedicina</h2></div>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/electromedicina/foto-1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-2.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-3.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-4.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-5.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-6.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-7.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-8.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-9.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-10.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-11.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-12.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-13.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-14.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-15.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-16.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-17.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-18.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-19.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-20.jpg" class="media-proyecto">
+            <img src="img/electromedicina/foto-21.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="proyecto-osciloscopios" class="page container">
+        <div class="btn-volver" onclick="navegar('categoria-electronica')">← Volver a Electrónica</div>
+        <div class="project-header"><h2>Restauración Osciloscopios</h2></div>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/osciloscopio/foto-1.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-2.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-3.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-4.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-5.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-6.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-7.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/foto-8.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="proyecto-estufa" class="page container">
+        <div class="btn-volver" onclick="navegar('categoria-mecanica')">← Volver a Mecánica</div>
+        <div class="project-header"><h2>Estufa de Metal (Soldadura)</h2></div>
+        <div class="image-gallery">
+            <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            <img src="img/estufa/foto-1.jpg" class="media-proyecto">
+            <img src="img/estufa/foto-2.jpg" class="media-proyecto">
+            <img src="img/estufa/foto-3.jpg" class="media-proyecto">
+            <img src="img/estufa/foto-4.jpg" class="media-proyecto">
+        </div>
+    </div>
+
+    <div id="pantalla-contacto" class="page container" style="text-align: center; padding-top: 5rem;">
+        <h2>¿Hablamos de tecnología?</h2>
+        <p>Incorporación en empresas de alta tecnología, I+D y mecatrónica de precisión.</p>
+        <p>📧 <a href="mailto:adriago777@gmail.com" style="color: var(--accent-color); font-size: 1.2rem;">adriago777@gmail.com</a></p>
+        <p>📞 +34 644 49 99 93</p>
+        <div class="btn-volver" onclick="navegar('pantalla-inicio')" style="margin-top: 3rem;">← Volver al inicio</div>
+    </div>
+
+    <footer>
+        <p>© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.</p>
+    </footer>
+
+    <div id="modal-proyecto" class="modal" onclick="cerrarModalFuera(event)">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <div id="modal-info-container"></div>
+        </div>
+    </div>
+
+    <div id="plantillas-modales" style="display: none;">
+        <div id="tpl-3d">
+            <span class="modal-tags">FABRICACIÓN ADITIVA / 3D</span>
+            <h2>Proyectos 3D</h2>
+            <div class="image-gallery">
+                <img src="img/3d/foto-1.jpg" class="media-proyecto">
+                <img src="img/3d/foto-2.jpg" class="media-proyecto">
+                <img src="img/3d/foto-3.jpg" class="media-proyecto">
+                <img src="img/3d/foto-4.jpg" class="media-proyecto">
+                <img src="img/3d/foto-5.jpg" class="media-proyecto">
+                <img src="img/3d/foto-6.jpg" class="media-proyecto">
+                <img src="img/3d/foto-7.jpg" class="media-proyecto">
+                <img src="img/3d/foto-8.jpg" class="media-proyecto">
+                <img src="img/3d/foto-9.jpg" class="media-proyecto">
+                <img src="img/3d/foto-10.jpg" class="media-proyecto">
+                <img src="img/3d/foto-11.jpg" class="media-proyecto">
+                <img src="img/3d/foto-12.jpg" class="media-proyecto">
+                <img src="img/3d/foto-13.jpg" class="media-proyecto">
+                <img src="img/3d/foto-14.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-arduino">
+            <span class="modal-tags">ELECTRÓNICA / ARDUINO</span>
+            <h2>Proyectos con Arduino</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/arduino/foto-1.jpg" class="media-proyecto">
+                <img src="img/arduino/foto-2.jpg" class="media-proyecto">
+                <img src="img/arduino/foto-3.jpg" class="media-proyecto">
+                <img src="img/arduino/foto-4.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-coche-arduino">
+            <span class="modal-tags">ARDUINO / RC</span>
+            <h2>Coche RC Inteligente</h2>
+            <div class="image-gallery">
+                <img src="img/coche-arduino/foto-1.jpg" class="media-proyecto">
+                <img src="img/coche-arduino/foto-2.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-extra">
+            <span class="modal-tags">VARIOS</span>
+            <h2>Proyectos Extra</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/extra/foto-1.jpg" class="media-proyecto">
+                <img src="img/extra/foto-2.jpg" class="media-proyecto">
+                <img src="img/extra/foto-3.jpg" class="media-proyecto">
+                <img src="img/extra/foto-4.jpg" class="media-proyecto">
+                <img src="img/extra/foto-5.jpg" class="media-proyecto">
+                <img src="img/extra/foto-6.jpg" class="media-proyecto">
+                <img src="img/extra/foto-7.jpg" class="media-proyecto">
+                <img src="img/extra/foto-8.jpg" class="media-proyecto">
+                <img src="img/extra/foto-9.jpg" class="media-proyecto">
+                <img src="img/extra/foto-10.jpg" class="media-proyecto">
+                <img src="img/extra/foto-11.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-desmontaje">
+            <span class="modal-tags">MICROMECÁNICA</span>
+            <h2>Desmontaje Máquina de Escribir</h2>
+            <div class="image-gallery">
+                <img src="img/desmontaje/foto-1.jpg" class="media-proyecto">
+                <img src="img/desmontaje/foto-2.jpg" class="media-proyecto">
+                <img src="img/desmontaje/foto-3.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-mecanizado">
+            <span class="modal-tags">MECÁNICA DE PRECISIÓN</span>
+            <h2>Trabajos de Mecanizado</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/mecanizado/foto-1.jpg" class="media-proyecto">
+                <img src="img/mecanizado/foto-2.jpg" class="media-proyecto">
+                <img src="img/mecanizado/foto-3.jpg" class="media-proyecto">
+                <img src="img/mecanizado/foto-4.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-microscopio">
+            <span class="modal-tags">CIENCIA / ÓPTICA</span>
+            <h2>Microscopía</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/microscopio/foto-1.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-2.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-3.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-4.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-5.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-6.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-7.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-8.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-9.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-10.jpg" class="media-proyecto">
+                <img src="img/microscopio/foto-11.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-patinete">
+            <span class="modal-tags">MECÁNICA / MOTOR</span>
+            <h2>Patinete Motorizado</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/patinete/foto-1.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-2.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-3.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-4.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-5.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-6.jpg" class="media-proyecto">
+                <img src="img/patinete/foto-7.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-baragrafo">
+            <span class="modal-tags">ALTO VOLTAJE</span>
+            <h2>Barágrafo Nixie</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/baragrafo/foto-1.jpg" class="media-proyecto">
+                <img src="img/baragrafo/foto-2.jpg" class="media-proyecto">
+                <img src="img/baragrafo/foto-3.jpg" class="media-proyecto">
+                <img src="img/baragrafo/foto-4.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-tuboneon">
+            <span class="modal-tags">ALTO VOLTAJE</span>
+            <h2>Tubos de Neón</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/tuboneon/foto-1.jpg" class="media-proyecto">
+                <img src="img/tuboneon/foto-2.jpg" class="media-proyecto">
+                <img src="img/tuboneon/foto-3.jpg" class="media-proyecto">
+                <img src="img/tuboneon/foto-4.jpg" class="media-proyecto">
+                <img src="img/tuboneon/foto-5.jpg" class="media-proyecto">
+            </div>
+        </div>
+        <div id="tpl-tubonixie">
+            <span class="modal-tags">ALTO VOLTAJE</span>
+            <h2>Tubos Nixie Clásicos</h2>
+            <div class="image-gallery">
+                <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+                <img src="img/tubonixie/foto-1.jpg" class="media-proyecto">
+                <img src="img/tubonixie/foto-2.jpg" class="media-proyecto">
+                <img src="img/tubonixie/foto-3.jpg" class="media-proyecto">
+                <img src="img/tubonixie/foto-4.jpg" class="media-proyecto">
+                <img src="img/tubonixie/foto-5.jpg" class="media-proyecto">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // NAVEGACIÓN
+        function navegar(idPantalla) { window.location.hash = idPantalla; }
+        window.addEventListener('hashchange', function() {
+            let hash = window.location.hash.substring(1);
+            if (!hash) hash = 'pantalla-inicio';
+            let destino = document.getElementById(hash);
+            if (destino) {
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                destino.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+        window.addEventListener('DOMContentLoaded', function() {
+            if (!window.location.hash) { window.location.hash = 'pantalla-inicio'; }
+            else { let event = new Event('hashchange'); window.dispatchEvent(event); }
+        });
+
+        function filtrarCategorias() {
+            let input = document.getElementById('buscador').value.toLowerCase();
+            let tarjetas = document.querySelectorAll('#lista-categorias .card-cat');
+            tarjetas.forEach(tarjeta => {
+                let keywords = tarjeta.getAttribute('data-keywords').toLowerCase();
+                if (keywords.includes(input)) { tarjeta.style.display = "block"; }
+                else { tarjeta.style.display = "none"; }
+            });
+        }
+
+        // MENÚ HAMBURGUESA ANIMADO
+        const navMenu = document.getElementById('nav-menu');
+        const menuToggle = document.getElementById('menu-toggle');
+        
+        function toggleMenu() { 
+            navMenu.classList.toggle('activo'); 
+            menuToggle.classList.toggle('activo'); // Muestra la 'X'
+        }
+
+        function accionMenu(accion) {
+            navMenu.classList.remove('activo');
+            menuToggle.classList.remove('activo'); // Vuelve a hamburguesa
+            if(accion === 'inicio') { navegar('pantalla-inicio'); window.scrollTo(0,0); }
+            else if (accion === 'proyectos') { navegar('pantalla-inicio'); setTimeout(() => document.getElementById('lista-categorias').scrollIntoView({behavior: 'smooth', block: 'start'}), 100); }
+            else if (accion === 'buscar') { navegar('pantalla-inicio'); setTimeout(() => { document.getElementById('buscador').scrollIntoView({behavior: 'smooth', block: 'center'}); document.getElementById('buscador').focus(); }, 100); }
+            else if (accion === 'contacto') { navegar('pantalla-contacto'); }
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('activo');
+                menuToggle.classList.remove('activo');
+            }
+        });
+
+        // MODALES
+        const modal = document.getElementById('modal-proyecto');
+        const modalContenedor = document.getElementById('modal-info-container');
+
+        function abrirModalExtendido(idPlantilla) {
+            const contenido = document.getElementById(idPlantilla).innerHTML;
+            modalContenedor.innerHTML = contenido;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function cerrarModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+            modalContenedor.innerHTML = ''; // Para parar vídeos
+        }
+
+        function cerrarModalFuera(event) {
+            if (event.target === modal) { cerrarModal(); }
+        }
+    </script>
+</body>
+</html>
