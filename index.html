@@ -20,17 +20,16 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulseGlow { 0% { box-shadow: 0 0 5px var(--accent-glow); } 50% { box-shadow: 0 0 20px var(--accent-color); } 100% { box-shadow: 0 0 5px var(--accent-glow); } }
         @keyframes backgroundSlide { from { background-position: 0 0; } to { background-position: 100px 100px; } }
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* --- NUEVO MENÚ HAMBURGUESA ANIMADO --- */
+        /* --- MENÚ HAMBURGUESA ANIMADO --- */
         nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; backdrop-filter: blur(5px); transition: all 0.3s; }
         .nav-logo { color: #fff; font-weight: bold; font-size: 1.2rem; cursor: pointer; z-index: 1002; }
         .nav-logo span { color: var(--accent-color); }
         
-        /* Icono hamburguesa animado */
         .menu-toggle { display: flex; flex-direction: column; cursor: pointer; width: 30px; gap: 6px; z-index: 1001; transition: all 0.3s; }
         .menu-toggle span { background-color: white; height: 3px; width: 100%; border-radius: 2px; transition: all 0.3s ease; transform-origin: left center; }
         
-        /* Estado 'X' del icono */
         .menu-toggle.activo span:nth-child(1) { transform: rotate(45deg); background-color: var(--accent-color); }
         .menu-toggle.activo span:nth-child(2) { opacity: 0; width: 0; }
         .menu-toggle.activo span:nth-child(3) { transform: rotate(-45deg); background-color: var(--accent-color); }
@@ -44,31 +43,19 @@
         .nav-menu li:last-child { border-bottom: none; }
         .nav-menu li a { color: inherit; text-decoration: none; display: block; }
 
-        /* --- NUEVO HERO SECTION (INICIO ESPECTACULAR) --- */
+        /* --- HERO SECTION --- */
         .hero { position: relative; padding: 8rem 2rem 6rem; text-align: center; overflow: hidden; background-color: #050505; border-bottom: 1px solid #222; }
-        
-        /* Fondo Técnico Animado (Líneas CAD sutiles) */
         .hero-bg-animated { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 50px 50px; animation: backgroundSlide 20s linear infinite; z-index: 1; }
-        
         .hero-container { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; animation: fadeIn 1s ease-out; }
-        
-        /* Foto de Perfil Esférica */
         .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-color); box-shadow: 0 0 20px var(--accent-glow); transition: all 0.3s; }
         .profile-photo:hover { transform: scale(1.05); box-shadow: 0 0 35px var(--accent-color); }
-        
         .hero-text h1 { margin: 0; font-size: 3.5rem; color: #fff; line-height: 1.1; }
         .hero-text h2 { color: var(--accent-color); font-weight: 300; font-size: 1.6rem; margin: 0.5rem 0 1.5rem; }
-        
-        /* Mini Bio Impactante */
         .mini-bio { font-size: 1.2rem; color: #aaa; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.7; }
-        
-        /* Botones CTA Elegantes */
         .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
         .btn { padding: 0.8rem 2rem; border-radius: 30px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; }
-        
         .btn-primary { background-color: var(--accent-color); color: #000; border: 2px solid var(--accent-color); }
         .btn-primary:hover { color: #fff; background-color: transparent; box-shadow: 0 0 20px var(--accent-color); }
-        
         .btn-secondary { background-color: transparent; color: var(--accent-color); border: 2px solid var(--accent-color); }
         .btn-secondary:hover { color: #000; background-color: var(--accent-color); }
 
@@ -77,7 +64,7 @@
         .page { display: none; }
         .page.active { display: block; animation: fadeIn 0.5s ease-in-out; }
         
-        /* --- HABILIDADES CLAVE (NUEVA UBICACIÓN) --- */
+        /* Habilidades Clave */
         .habilidades-clave { text-align: center; padding: 4rem 2rem; border-bottom: 1px solid #222; }
         .habilidades-clave h3 { color: #fff; font-size: 1.8rem; margin-bottom: 2rem; }
         .stack-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 800px; margin: 0 auto; }
@@ -90,7 +77,6 @@
         
         /* Cuadrículas y Tarjetas */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
-        
         .card-cat { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; border-bottom: 4px solid var(--accent-color); transition: all 0.3s; cursor: pointer; text-align: center; position: relative; }
         .card-cat:hover { transform: translateY(-5px); border-bottom-color: #fff; animation: pulseGlow 2s infinite; }
         .card-cat h3 { color: var(--accent-color); margin-top: 0; font-size: 1.5rem; }
@@ -100,26 +86,21 @@
         .card-proj h3 { color: #fff; margin: 0 0 0.5rem; }
         .proj-tags { font-size: 0.8rem; color: #888; font-weight: bold; margin-bottom: 0.5rem; }
         
-        .btn-volver { display: inline-flex; align-items: center; margin-bottom: 2rem; padding: 0.5rem 1rem; background-color: #222; color: #fff; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-volver { display: inline-flex; align-items: center; margin-bottom: 2rem; padding: 0.5rem 1rem; background-color: #222; color: #fff; border-radius: 5px; cursor: pointer; font-weight: bold; transition: all 0.3s;}
         .btn-volver:hover { background-color: var(--accent-color); color: #000; }
         .project-header h2 { color: var(--accent-color); font-size: 2.8rem; margin: 0; }
         
         /* --- IMÁGENES Y VÍDEOS --- */
         .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .media-proyecto { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
-        .media-proyecto:hover { transform: scale(1.02); }
-        iframe.media-proyecto { aspect-ratio: 16/9; height: auto; min-height: 250px; }
+        
+        /* Cursor lupa solo para imágenes, no para videos */
+        img.media-proyecto { cursor: zoom-in; }
+        img.media-proyecto:hover { transform: scale(1.02); border-color: var(--accent-color); }
+        iframe.media-proyecto { aspect-ratio: 16/9; height: auto; min-height: 250px; cursor: default;}
 
-        /* --- NUEVO: BLOQUES DE TEXTO PARA STORYTELLING --- */
-        .bloque-texto {
-            grid-column: 1 / -1; /* Ocupa toda la fila empujando las fotos */
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            margin: 1.5rem 0 0.5rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+        /* Bloques de texto (Storytelling) */
+        .bloque-texto { grid-column: 1 / -1; background: #1a1a1a; padding: 2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); margin: 1.5rem 0 0.5rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .bloque-texto h3 { color: var(--accent-color); margin-top: 0; font-size: 1.6rem; margin-bottom: 0.5rem; }
         .bloque-texto p { color: #ccc; font-size: 1.1rem; margin-bottom: 0; line-height: 1.7; }
         
@@ -130,14 +111,20 @@
         
         footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: #666; border-top: 1px solid #222; margin-top: 4rem; }
         
-        /* --- MODAL MEJORADO --- */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 2000; backdrop-filter: blur(5px); }
-        .modal-contenido { background-color: var(--card-bg); margin: 3% auto; padding: 40px; width: 90%; max-width: 900px; border-radius: 12px; border: 1px solid #333; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); animation: fadeIn 0.3s ease-out; max-height: 85vh; overflow-y: auto; }
+        /* --- MODAL MEJORADO (SCROLL EN EL BORDE DERECHO) --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.92); z-index: 2000; backdrop-filter: blur(8px); overflow-y: auto; /* El scroll está ahora en toda la pantalla negra */ }
+        .modal-contenido { background-color: var(--card-bg); margin: 50px auto; padding: 40px; width: 90%; max-width: 900px; border-radius: 12px; border: 1px solid #333; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.9); animation: fadeIn 0.3s ease-out; /* Eliminado el max-height para que crezca natural */ }
         .cerrar-modal { position: absolute; top: 15px; right: 25px; font-size: 35px; cursor: pointer; color: #888; transition: color 0.2s; z-index: 10; background: var(--card-bg); border-radius: 50%; width: 40px; height: 40px; text-align: center; line-height: 35px; }
         .cerrar-modal:hover { color: var(--accent-color); }
         .modal-contenido h2 { color: var(--accent-color); font-size: 2.2rem; margin-top: 0; }
         .modal-contenido .modal-tags { font-size: 0.85rem; color: #aaa; font-weight: bold; margin-bottom: 1rem; display: block; }
         .modal-contenido p { font-size: 1.1rem; color: var(--text-color); line-height: 1.7; }
+
+        /* --- VISOR DE FOTOS (LIGHTBOX) --- */
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(8px); }
+        .lightbox img { max-width: 95%; max-height: 95vh; object-fit: contain; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,1); animation: zoomIn 0.3s ease-out; }
+        .cerrar-lightbox { position: absolute; top: 20px; right: 30px; font-size: 40px; color: #fff; cursor: pointer; transition: 0.3s; }
+        .cerrar-lightbox:hover { color: var(--accent-color); }
     </style>
 </head>
 <body>
@@ -373,7 +360,6 @@
         <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
         <div class="project-header"><h2>Turbici: Mecánica y Chasis</h2></div>
         <div class="image-gallery">
-            
             <div class="bloque-texto">
                 <h3>Fase 1: Refuerzo y Modificación del Chasis</h3>
                 <p>Para poder soportar el inmenso empuje lineal de la turbina, fue necesario someter el cuadro de la bicicleta a un rediseño estructural, aplicando técnicas de soldadura TIG/MIG para garantizar la máxima rigidez.</p>
@@ -390,7 +376,6 @@
             <img src="img/turbici/turbina-protector2.jpg" class="media-proyecto">
             <img src="img/turbici/detalles-finales.jpg" class="media-proyecto">
             <img src="img/turbici/bici-montada2.jpg" class="media-proyecto">
-
         </div>
     </div>
     
@@ -398,7 +383,6 @@
         <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
         <div class="project-header"><h2>Turbici: Electrónica de Control</h2></div>
         <div class="image-gallery">
-
             <div class="bloque-texto">
                 <h3>Desarrollo del Cerebro Electrónico</h3>
                 <p>Para gestionar el encendido, la aceleración y los parámetros de seguridad de la turbina, desarrollé un sistema de control basado en Arduino. El vídeo a continuación muestra las pruebas de telemetría y respuesta RC.</p>
@@ -415,7 +399,6 @@
             <img src="img/turbici/electronica-4.jpg" class="media-proyecto">
             <img src="img/turbici/electronica-5.jpg" class="media-proyecto">
             <img src="img/turbici/electronica-6.jpg" class="media-proyecto">
-
         </div>
     </div>
 
@@ -424,9 +407,7 @@
         <div class="btn-volver" onclick="navegar('categoria-aditiva')">← Volver a Aditiva</div>
         <div class="project-header"><h2>Pneumaflex (Proyecto Galardonado)</h2></div>
         <p>Desarrollo completo de actuadores neumáticos flexibles impresos en 3D para sistemas mecatrónicos automatizados (Soft Robotics).</p>
-        
         <div class="image-gallery">
-            
             <div class="bloque-texto">
                 <h3>Fase 1: Conceptualización y Diseño Paramétrico</h3>
                 <p>El reto inicial era lograr flexión mediante presión de aire controlada. A través de Siemens NX, diseñé las primeras cámaras de aire internas, buscando el equilibrio perfecto entre flexibilidad del material (TPU) y resistencia a la rotura.</p>
@@ -481,7 +462,6 @@
             <img src="img/pneumaflex/yo-premio-alava.jpg" class="media-proyecto">
             <img src="img/pneumaflex/yo-premio-bat.jpg" class="media-proyecto">
             <img src="img/pneumaflex/premio-bat.jpg" class="media-proyecto">            
-
         </div>
     </div>
 
@@ -492,15 +472,15 @@
         <div class="image-gallery">
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-            <img src="img/caja-cerveza/foto-1.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-2.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-3.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-4.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-5.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-6.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-7.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-8.jpg" class="media-proyecto">
-            <img src="img/caja-cerveza/foto-9.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza1.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza2.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-trabajo1.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-trabajo2.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-completa1.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-completa2.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-completa3.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-completa4.jpg" class="media-proyecto">
+            <img src="img/caja-cerveza/cajacerveza-completa5.jpg" class="media-proyecto">
         </div>
     </div>
 
@@ -511,27 +491,22 @@
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-            <img src="img/electromedicina/foto-1.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-2.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-3.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-4.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-5.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-6.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-7.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-8.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-9.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-10.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-11.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-12.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-13.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-14.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-15.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-16.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-17.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-18.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-19.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-20.jpg" class="media-proyecto">
-            <img src="img/electromedicina/foto-21.jpg" class="media-proyecto">
+            <img src="img/electromedicina/lamp-luz-fria1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/lamp-luz-fria-3.jpg" class="media-proyecto">
+            <img src="img/electromedicina/sonda-ultrasound4.jpg" class="media-proyecto">
+            <img src="img/electromedicina/sonda-ultrasound1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/sonda-ultrasound2.jpg" class="media-proyecto">
+            <img src="img/electromedicina/sonda-ultrasound3.jpg" class="media-proyecto">
+            <img src="img/electromedicina/da-vinci-lente1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/da-vinci-lente3.jpg" class="media-proyecto">
+            <img src="img/electromedicina/da-vinci-robot.jpg" class="media-proyecto">
+            <img src="img/electromedicina/ct1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/pc-rayos-x2.jpg" class="media-proyecto">
+            <img src="img/electromedicina/pico-rayos-x.jpg" class="media-proyecto">
+            <img src="img/electromedicina/sierra-stryker1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/arco-c-kuka.jpg" class="media-proyecto">
+            <img src="img/electromedicina/circuito-display1.jpg" class="media-proyecto">
+            <img src="img/electromedicina/circuito-random1.jpg" class="media-proyecto">
         </div>
     </div>
 
@@ -544,14 +519,14 @@
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-            <img src="img/osciloscopio/foto-1.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-2.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-3.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-4.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-5.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-6.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-7.jpg" class="media-proyecto">
-            <img src="img/osciloscopio/foto-8.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio1.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio2.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio3.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio4.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio5.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio6.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio7.jpg" class="media-proyecto">
+            <img src="img/osciloscopio/osciloscopio8.jpg" class="media-proyecto">
         </div>
     </div>
 
@@ -560,10 +535,10 @@
         <div class="project-header"><h2>Estufa de Metal (Soldadura)</h2></div>
         <div class="image-gallery">
             <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-            <img src="img/estufa/foto-1.jpg" class="media-proyecto">
-            <img src="img/estufa/foto-2.jpg" class="media-proyecto">
-            <img src="img/estufa/foto-3.jpg" class="media-proyecto">
-            <img src="img/estufa/foto-4.jpg" class="media-proyecto">
+            <img src="img/estufa/estufa1.jpg" class="media-proyecto">
+            <img src="img/estufa/estufa2.jpg" class="media-proyecto">
+            <img src="img/estufa/estufa3.jpg" class="media-proyecto">
+            <img src="img/estufa/estufa4.jpg" class="media-proyecto">
         </div>
     </div>
 
@@ -581,6 +556,7 @@
 
     <div id="modal-proyecto" class="modal" onclick="cerrarModalFuera(event)">
         <div class="modal-contenido">
+            <div class="btn-volver" onclick="cerrarModal()" style="margin-bottom: 1.5rem; border: 1px solid #333;">← Volver atrás</div>
             <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
             <div id="modal-info-container"></div>
         </div>
@@ -591,15 +567,15 @@
             <span class="modal-tags">FABRICACIÓN ADITIVA / 3D</span>
             <h2>Proyectos 3D</h2>
             <div class="image-gallery">
-                <img src="img/3d/foto-1.jpg" class="media-proyecto">
-                <img src="img/3d/foto-2.jpg" class="media-proyecto">
-                <img src="img/3d/foto-3.jpg" class="media-proyecto">
-                <img src="img/3d/foto-4.jpg" class="media-proyecto">
-                <img src="img/3d/foto-5.jpg" class="media-proyecto">
-                <img src="img/3d/foto-6.jpg" class="media-proyecto">
-                <img src="img/3d/foto-7.jpg" class="media-proyecto">
-                <img src="img/3d/foto-8.jpg" class="media-proyecto">
-                <img src="img/3d/foto-9.jpg" class="media-proyecto">
+                <img src="img/3d/tapalogo1.jpg" class="media-proyecto">
+                <img src="img/3d/tapalogo2.jpg" class="media-proyecto">
+                <img src="img/3d/tapalogo3.jpg" class="media-proyecto">
+                <img src="img/3d/neumaclip1.jpg" class="media-proyecto">
+                <img src="img/3d/neumaclip2.jpg" class="media-proyecto">
+                <img src="img/3d/neumaclip3.jpg" class="media-proyecto">
+                <img src="img/3d/tapa-rosca-miguel-original-down.jpg" class="media-proyecto">
+                <img src="img/3d/tapa-rosca-mighel-clon-down.jpg" class="media-proyecto">
+                <img src="img/3d/tapas-rosca-mighel-ambas1.jpg" class="media-proyecto">
                 <img src="img/3d/foto-10.jpg" class="media-proyecto">
                 <img src="img/3d/foto-11.jpg" class="media-proyecto">
                 <img src="img/3d/foto-12.jpg" class="media-proyecto">
@@ -612,18 +588,18 @@
             <h2>Proyectos con Arduino</h2>
             <div class="image-gallery">
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-                <img src="img/arduino/foto-1.jpg" class="media-proyecto">
-                <img src="img/arduino/foto-2.jpg" class="media-proyecto">
-                <img src="img/arduino/foto-3.jpg" class="media-proyecto">
-                <img src="img/arduino/foto-4.jpg" class="media-proyecto">
+                <img src="img/arduino/caja-display1.jpg" class="media-proyecto">
+                <img src="img/arduino/caja-display2.jpg" class="media-proyecto">
+                <img src="img/arduino/caja-display3.jpg" class="media-proyecto">
+                <img src="img/arduino/stepper-ardu1.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-coche-arduino">
             <span class="modal-tags">ARDUINO / RC</span>
             <h2>Coche RC Inteligente</h2>
             <div class="image-gallery">
-                <img src="img/coche-arduino/foto-1.jpg" class="media-proyecto">
-                <img src="img/coche-arduino/foto-2.jpg" class="media-proyecto">
+                <img src="img/coche-arduino/arducoche1.jpg" class="media-proyecto">
+                <img src="img/coche-arduino/arducoche2.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-extra">
@@ -635,14 +611,14 @@
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-                <img src="img/extra/foto-1.jpg" class="media-proyecto">
-                <img src="img/extra/foto-2.jpg" class="media-proyecto">
-                <img src="img/extra/foto-3.jpg" class="media-proyecto">
-                <img src="img/extra/foto-4.jpg" class="media-proyecto">
-                <img src="img/extra/foto-5.jpg" class="media-proyecto">
-                <img src="img/extra/foto-6.jpg" class="media-proyecto">
-                <img src="img/extra/foto-7.jpg" class="media-proyecto">
-                <img src="img/extra/foto-8.jpg" class="media-proyecto">
+                <img src="img/extra/amplificador-luz1.jpg" class="media-proyecto">
+                <img src="img/extra/digifiz-desmontado1.jpg" class="media-proyecto">
+                <img src="img/extra/digifiz-desmontado2.jpg" class="media-proyecto">
+                <img src="img/extra/extension-botones-mp3.jpg" class="media-proyecto">
+                <img src="img/extra/taladro2.jpg" class="media-proyecto">
+                <img src="img/extra/taladro4.jpg" class="media-proyecto">
+                <img src="img/extra/transistor-quemado1.jpg" class="media-proyecto">
+                <img src="img/extra/transistor-quemado-replacement.jpg" class="media-proyecto">
                 <img src="img/extra/foto-9.jpg" class="media-proyecto">
                 <img src="img/extra/foto-10.jpg" class="media-proyecto">
                 <img src="img/extra/foto-11.jpg" class="media-proyecto">
@@ -652,9 +628,9 @@
             <span class="modal-tags">MICROMECÁNICA</span>
             <h2>Desmontaje Máquina de Escribir</h2>
             <div class="image-gallery">
-                <img src="img/desmontaje/foto-1.jpg" class="media-proyecto">
-                <img src="img/desmontaje/foto-2.jpg" class="media-proyecto">
-                <img src="img/desmontaje/foto-3.jpg" class="media-proyecto">
+                <img src="img/desmontaje/maquina-escribir1.jpg" class="media-proyecto">
+                <img src="img/desmontaje/maquina-escribir-2.jpg" class="media-proyecto">
+                <img src="img/desmontaje/maquina-escribir3.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-mecanizado">
@@ -665,10 +641,10 @@
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-                <img src="img/mecanizado/foto-1.jpg" class="media-proyecto">
-                <img src="img/mecanizado/foto-2.jpg" class="media-proyecto">
-                <img src="img/mecanizado/foto-3.jpg" class="media-proyecto">
-                <img src="img/mecanizado/foto-4.jpg" class="media-proyecto">
+                <img src="img/mecanizado/cilindro-mecanizado.jpg" class="media-proyecto">
+                <img src="img/mecanizado/pieza-base1.jpg" class="media-proyecto">
+                <img src="img/mecanizado/ensamble1.jpg" class="media-proyecto">
+                <img src="img/mecanizado/ensamble1-completo.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-microscopio">
@@ -677,17 +653,17 @@
             <div class="image-gallery">
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-                <img src="img/microscopio/foto-1.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-2.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-3.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-4.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-5.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-6.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-7.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-8.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-9.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-10.jpg" class="media-proyecto">
-                <img src="img/microscopio/foto-11.jpg" class="media-proyecto">
+                <img src="img/microscopio/microscopio1.jpg" class="media-proyecto">
+                <img src="img/microscopio/microscopio2.jpg" class="media-proyecto">
+                <img src="img/microscopio/microscopio3.jpg" class="media-proyecto">
+                <img src="img/microscopio/microscopio4.jpg" class="media-proyecto">
+                <img src="img/microscopio/chip-limado.jpg" class="media-proyecto">
+                <img src="img/microscopio/chip1.jpg" class="media-proyecto">
+                <img src="img/microscopio/chip2.jpg" class="media-proyecto">
+                <img src="img/microscopio/chip3.jpg" class="media-proyecto">
+                <img src="img/microscopio/sensor-camara1.jpg" class="media-proyecto">
+                <img src="img/microscopio/sensor-camara2.jpg" class="media-proyecto">
+                <img src="img/microscopio/sensor-camara3.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-patinete">
@@ -697,13 +673,13 @@
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
                 <iframe src="https://www.youtube.com/embed/TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
-                <img src="img/patinete/foto-1.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-2.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-3.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-4.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-5.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-6.jpg" class="media-proyecto">
-                <img src="img/patinete/foto-7.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin1.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin2.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin3.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin4.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin5.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin6.jpg" class="media-proyecto">
+                <img src="img/patinete/motopatin7.jpg" class="media-proyecto">
             </div>
         </div>
         <div id="tpl-baragrafo">
@@ -747,24 +723,42 @@
         </div>
     </div>
 
+    <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+        <span class="cerrar-lightbox">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
     <script>
-        // NAVEGACIÓN
-        function navegar(idPantalla) { window.location.hash = idPantalla; }
+        let modalAbierto = false; // Variable para saber si el usuario está viendo una ventana fantasma
+
+        // CEREBRO DE NAVEGACIÓN Y BOTÓN ATRÁS DEL MÓVIL
         window.addEventListener('hashchange', function() {
             let hash = window.location.hash.substring(1);
+
+            // Si el usuario le dio al botón de "Atrás" en su móvil y el enlace ya no es el del modal
+            if (modalAbierto && hash !== 'ventana-abierta') {
+                cerrarModalLogica();
+            }
+
             if (!hash) hash = 'pantalla-inicio';
-            let destino = document.getElementById(hash);
-            if (destino) {
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-                destino.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Si es una navegación normal de página (y no la ruta invisible del modal)
+            if (hash !== 'ventana-abierta') {
+                let destino = document.getElementById(hash);
+                if (destino && destino.classList.contains('page')) {
+                    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                    destino.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         });
+        
         window.addEventListener('DOMContentLoaded', function() {
             if (!window.location.hash) { window.location.hash = 'pantalla-inicio'; }
             else { let event = new Event('hashchange'); window.dispatchEvent(event); }
         });
 
+        // FILTRO DE BÚSQUEDA
         function filtrarCategorias() {
             let input = document.getElementById('buscador').value.toLowerCase();
             let tarjetas = document.querySelectorAll('#lista-categorias .card-cat');
@@ -775,18 +769,18 @@
             });
         }
 
-        // MENÚ HAMBURGUESA ANIMADO
+        // MENÚ HAMBURGUESA
         const navMenu = document.getElementById('nav-menu');
         const menuToggle = document.getElementById('menu-toggle');
         
         function toggleMenu() { 
             navMenu.classList.toggle('activo'); 
-            menuToggle.classList.toggle('activo'); // Muestra la 'X'
+            menuToggle.classList.toggle('activo'); 
         }
 
         function accionMenu(accion) {
             navMenu.classList.remove('activo');
-            menuToggle.classList.remove('activo'); // Vuelve a hamburguesa
+            menuToggle.classList.remove('activo'); 
             if(accion === 'inicio') { navegar('pantalla-inicio'); window.scrollTo(0,0); }
             else if (accion === 'proyectos') { navegar('pantalla-inicio'); setTimeout(() => document.getElementById('lista-categorias').scrollIntoView({behavior: 'smooth', block: 'start'}), 100); }
             else if (accion === 'buscar') { navegar('pantalla-inicio'); setTimeout(() => { document.getElementById('buscador').scrollIntoView({behavior: 'smooth', block: 'center'}); document.getElementById('buscador').focus(); }, 100); }
@@ -800,7 +794,7 @@
             }
         });
 
-        // MODALES
+        // NUEVO SISTEMA DE MODALES CON HISTORIAL (PARA EL BOTÓN ATRÁS)
         const modal = document.getElementById('modal-proyecto');
         const modalContenedor = document.getElementById('modal-info-container');
 
@@ -809,16 +803,43 @@
             modalContenedor.innerHTML = contenido;
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden'; 
+            modalAbierto = true;
+            // Engañamos al navegador para que crea que hemos ido a una página nueva
+            window.location.hash = 'ventana-abierta'; 
         }
 
         function cerrarModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-            modalContenedor.innerHTML = ''; // Para parar vídeos
+            if (window.location.hash === '#ventana-abierta') {
+                window.history.back(); // Si le damos al botón "Volver" visual, que dispare el botón "Atrás" del navegador
+            } else {
+                cerrarModalLogica();
+            }
         }
 
+        function cerrarModalLogica() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+            modalContenedor.innerHTML = ''; // Vacía el contenido para parar los vídeos de YouTube
+            modalAbierto = false;
+        }
+
+        // Cerrar si haces clic en la parte negra de fuera
         function cerrarModalFuera(event) {
             if (event.target === modal) { cerrarModal(); }
+        }
+
+        // --- LÓGICA DEL VISOR DE FOTOS (LIGHTBOX) ---
+        // Este código "escucha" cualquier clic en toda la página
+        document.body.addEventListener('click', function(e) {
+            // Si has hecho clic en una imagen y tiene la clase 'media-proyecto'
+            if (e.target.tagName === 'IMG' && e.target.classList.contains('media-proyecto')) {
+                document.getElementById('lightbox-img').src = e.target.src; // Coge la foto elegida
+                document.getElementById('lightbox').style.display = 'flex'; // Enciende la capa oscura
+            }
+        });
+
+        function cerrarLightbox() {
+            document.getElementById('lightbox').style.display = 'none'; // Apaga la capa oscura
         }
     </script>
 </body>
