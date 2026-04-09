@@ -338,7 +338,7 @@
         </section>
     </div>
 
-    <div id="proyecto-turbici-inicio" class="page container">
+<div id="proyecto-turbici-inicio" class="page container">
         <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver al inicio</div>
         <div class="project-header" style="text-align: center; margin-bottom: 3rem;">
             <h2>Turbici: Integración Turbina Jet</h2>
@@ -352,6 +352,10 @@
             <div class="card-cat" style="background: var(--card-bg);" onclick="navegar('turbici-electronica')">
                 <h3>⚡ Parte II: Electrónica</h3>
                 <p>Controlador Arduino, señal RC y caja 3D.</p>
+            </div>
+            <div class="card-cat" style="background: var(--card-bg); border-bottom-color: #ff0055;" onclick="navegar('turbici-videos')">
+                <h3>🎬 Parte III: Vídeos</h3>
+                <p>Pruebas de encendido, test de empuje y proyecto en acción.</p>
             </div>
         </section>
     </div>
@@ -406,6 +410,22 @@
         </div>
     </div>
 
+    <div id="turbici-videos" class="page container">
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="project-header"><h2>Turbici: Galería de Vídeos</h2></div>
+        
+        <div class="image-gallery">
+            <div class="bloque-texto">
+                <h3>Pruebas y Funcionamiento en Acción</h3>
+                <p>Recopilación completa de pruebas dinámicas. Aquí puedes ver desde los primeros encendidos del motor jet hasta la respuesta del control electrónico y la telemetría en tiempo real.</p>
+            </div>
+
+            <iframe src="https://www.youtube.com/embed/PON_TU_ID_AQUI" class="media-proyecto" allowfullscreen></iframe>
+            
+            <iframe src="https://www.youtube.com/embed/PON_TU_ID_AQUI" class="media-proyecto" style="aspect-ratio: 9/16;" allowfullscreen></iframe>
+            
+            </div>
+    </div>
 
     <div id="proyecto-pneumaflex" class="page container">
         <div class="btn-volver" onclick="navegar('categoria-aditiva')">← Volver a Aditiva</div>
