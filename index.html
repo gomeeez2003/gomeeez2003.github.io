@@ -749,10 +749,8 @@
     <script>
         let modalAbierto = false; 
 
-        // --- ¡ESTE ES EL MOTOR DE NAVEGACIÓN QUE BORRÉ SIN QUERER! ---
         function navegar(idPantalla) { window.location.hash = idPantalla; }
 
-        // CEREBRO DE NAVEGACIÓN Y BOTÓN ATRÁS DEL MÓVIL
         window.addEventListener('hashchange', function() {
             let hash = window.location.hash.substring(1);
 
@@ -766,12 +764,14 @@
                 let destino = document.getElementById(hash);
                 if (destino && destino.classList.contains('page')) {
                     
-                    // --- FIX: Detener y reiniciar vídeos al cambiar de pantalla ---
-                    document.querySelectorAll('.page iframe').forEach(iframe => {
-                        let srcActual = iframe.src;
-                        iframe.src = srcActual; // Esto fuerza al vídeo a recargarse y detenerse
+                    // --- FIX: Detener y reiniciar vídeos SIN afectar a las flechas del navegador ---
+                    // En lugar de recargar la ruta (lo que engaña al historial), "clonamos" la caja del vídeo
+                    // de la página que vamos a abandonar y la sustituimos. Esto lo reinicia a 0s y lo pausa.
+                    document.querySelectorAll('.page.active iframe').forEach(iframe => {
+                        let clone = iframe.cloneNode(true);
+                        iframe.parentNode.replaceChild(clone, iframe);
                     });
-                    // --------------------------------------------------------------
+                    // -------------------------------------------------------------------------------
 
                     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
                     destino.classList.add('active');
@@ -785,7 +785,6 @@
             else { let event = new Event('hashchange'); window.dispatchEvent(event); }
         });
 
-        // FILTRO DE BÚSQUEDA
         function filtrarCategorias() {
             let input = document.getElementById('buscador').value.toLowerCase();
             let tarjetas = document.querySelectorAll('#lista-categorias .card-cat');
@@ -796,7 +795,6 @@
             });
         }
 
-        // MENÚ HAMBURGUESA
         const navMenu = document.getElementById('nav-menu');
         const menuToggle = document.getElementById('menu-toggle');
         
@@ -821,7 +819,6 @@
             }
         });
 
-        // SISTEMA DE MODALES CON HISTORIAL (PARA EL BOTÓN ATRÁS)
         const modal = document.getElementById('modal-proyecto');
         const modalContenedor = document.getElementById('modal-info-container');
 
@@ -845,16 +842,14 @@
         function cerrarModalLogica() {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto'; 
-            modalContenedor.innerHTML = ''; // Vacía el contenido para parar los vídeos de YouTube
+            modalContenedor.innerHTML = ''; 
             modalAbierto = false;
         }
 
-        // Cerrar si haces clic en la parte negra de fuera
         function cerrarModalFuera(event) {
             if (event.target === modal) { cerrarModal(); }
         }
 
-        // --- LÓGICA DEL VISOR DE FOTOS (LIGHTBOX) ---
         document.body.addEventListener('click', function(e) {
             if (e.target.tagName === 'IMG' && e.target.classList.contains('media-proyecto')) {
                 document.getElementById('lightbox-img').src = e.target.src; 
