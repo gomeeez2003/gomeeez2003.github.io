@@ -338,7 +338,7 @@
         </section>
     </div>
 
-<div id="proyecto-turbici-inicio" class="page container">
+    <div id="proyecto-turbici-inicio" class="page container">
         <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver al inicio</div>
         <div class="project-header" style="text-align: center; margin-bottom: 3rem;">
             <h2>Turbici: Integración Turbina Jet</h2>
@@ -403,7 +403,10 @@
             <img src="img/turbici/electronica2.jpeg" class="media-proyecto">
             <img src="img/turbici/turbina-semiabierta.jpg" class="media-proyecto">
 
-</div> </div> <div id="turbici-videos" class="page container">
+        </div> 
+    </div> 
+
+    <div id="turbici-videos" class="page container">
         <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
         <div class="project-header"><h2>Turbici: Galería de Vídeos</h2></div>
         
@@ -418,7 +421,7 @@
             <iframe src="https://www.youtube.com/embed/giFiOlaDtvI" class="media-proyecto" style="aspect-ratio: 9/16;" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/M02SRsOnkJQ" class="media-proyecto" style="aspect-ratio: 9/16;" allowfullscreen></iframe>
             
-            </div>
+        </div>
     </div>
 
     <div id="proyecto-pneumaflex" class="page container">
@@ -774,8 +777,12 @@
         });
         
         window.addEventListener('DOMContentLoaded', function() {
-            if (!window.location.hash) { window.location.hash = 'pantalla-inicio'; }
-            else { let event = new Event('hashchange'); window.dispatchEvent(event); }
+            // FIX: Si recargas la página estando en un proyecto fantasma, te devuelve al inicio
+            if (!window.location.hash || window.location.hash === '#ventana-abierta') { 
+                window.location.hash = 'pantalla-inicio'; 
+            } else { 
+                let event = new Event('hashchange'); window.dispatchEvent(event); 
+            }
         });
 
         function filtrarCategorias() {
