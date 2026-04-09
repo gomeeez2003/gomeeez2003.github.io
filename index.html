@@ -765,6 +765,14 @@
             if (hash !== 'ventana-abierta') {
                 let destino = document.getElementById(hash);
                 if (destino && destino.classList.contains('page')) {
+                    
+                    // --- FIX: Detener y reiniciar vídeos al cambiar de pantalla ---
+                    document.querySelectorAll('.page iframe').forEach(iframe => {
+                        let srcActual = iframe.src;
+                        iframe.src = srcActual; // Esto fuerza al vídeo a recargarse y detenerse
+                    });
+                    // --------------------------------------------------------------
+
                     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
                     destino.classList.add('active');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
