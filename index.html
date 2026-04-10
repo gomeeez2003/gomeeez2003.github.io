@@ -32,11 +32,11 @@
         </div>
         <div class="nav-menu" id="nav-menu">
             <ul>
-                <li onclick="accionMenu('inicio')">Inicio</li>
-                <li onclick="accionMenu('proyectos')">Proyectos</li>
-                <li onclick="accionMenu('buscar')">Buscar</li>
-                <li onclick="accionMenu('contacto')">Contacto</li>
-                <li><a href="img/adrian-gomez-cv.pdf" target="_blank" download>Descargar CV</a></li>
+                <li><button class="nav-btn" onclick="accionMenu('inicio')">Inicio</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('proyectos')">Proyectos</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('buscar')">Buscar</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('contacto')">Contacto</button></li>
+                <li><a href="img/adrian-gomez-cv.pdf" class="nav-btn" target="_blank" download>Descargar CV</a></li>
             </ul>
         </div>
     </nav>
@@ -62,8 +62,8 @@
                     </p>
                     
                     <div class="cta-buttons">
-                        <div class="btn btn-primary" onclick="document.getElementById('lista-categorias').scrollIntoView({behavior: 'smooth', block: 'start'})">Explorar Proyectos</div>
-                        <div class="btn btn-secondary" onclick="navegar('pantalla-contacto')">Contactar</div>
+                        <button class="btn btn-primary" onclick="document.getElementById('lista-categorias').scrollIntoView({behavior: 'smooth', block: 'start'})">Explorar Proyectos</button>
+                        <a href="#pantalla-contacto" class="btn btn-secondary">Contactar</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
             <section class="video-short-container">
                 <h3 style="color: #fff; margin-bottom: 1.5rem;">Integración Jet: Turbina en Chasis Ligero</h3>
                 <iframe src="https://www.youtube.com/embed/M02SRsOnkJQ" title="Bici Jet con Turbina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')" style="margin-top: 2rem; font-size: 1.1rem; padding: 0.8rem 1.5rem;">Ver Detalles de Ingeniería de Turbici →</div>
+                <a href="#proyecto-turbici-inicio" class="btn-volver" style="text-decoration: none; margin-top: 2rem; font-size: 1.1rem; padding: 0.8rem 1.5rem; display: inline-block;">Ver Detalles de Ingeniería de Turbici →</a>
             </section>
 
             <div class="search-container">
@@ -95,170 +95,170 @@
             </div>
 
             <section class="grid" id="lista-categorias">
-                <div class="card-cat" data-keywords="mecanica precision soldadura carricoche ayunta ayuntamiento mecanizado" onclick="navegar('categoria-mecanica')">
+                <a href="#categoria-mecanica" class="card-cat scroll-reveal" data-keywords="mecanica precision soldadura carricoche ayunta ayuntamiento mecanizado" style="text-decoration: none; display: block;">
                     <h3>⚙️ Mecánica de Precisión</h3>
                     <p>Diseño de prototipos, mecanizado, micromecánica, soldadura y sistemas neumáticos.</p>
-                </div>
-                <div class="card-cat" data-keywords="3d aditiva laminado nx sputtering actuador flexible prototipado pnemaflex" onclick="navegar('categoria-aditiva')">
+                </a>
+                <a href="#categoria-aditiva" class="card-cat scroll-reveal" data-keywords="3d aditiva laminado nx sputtering actuador flexible prototipado pnemaflex" style="text-decoration: none; display: block;">
                     <h3>🧊 Fabricación Aditiva y CAD</h3>
                     <p>Modelado NX, dominio del laminado y materiales para impresión de piezas funcionales.</p>
-                </div>
-                <div class="card-cat" data-keywords="electronica control arduino rc digifiz nixie flash pcbs electromedicina osciloscopio mk2" onclick="navegar('categoria-electronica')">
+                </a>
+                <a href="#categoria-electronica" class="card-cat scroll-reveal" data-keywords="electronica control arduino rc digifiz nixie flash pcbs electromedicina osciloscopio mk2" style="text-decoration: none; display: block;">
                     <h3>⚡ Electrónica y Control</h3>
                     <p>Programación Arduino, diseño de PCBs, diagnóstico de instrumentación y electromedicina.</p>
-                </div>
-                <div class="card-cat" data-keywords="ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio" onclick="navegar('categoria-ciencia')">
+                </a>
+                <a href="#categoria-ciencia" class="card-cat scroll-reveal" data-keywords="ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio" style="text-decoration: none; display: block;">
                     <h3>🔬 Ciencia Aplicada e I+D</h3>
                     <p>Investigación en física de alto vacío, tubos Nixie, plasma y sistemas láser.</p>
-                </div>
+                </a>
             </section>
         </div>
     </div>
 
     <div id="categoria-mecanica" class="page container">
-        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a Categorías</a>
         <div class="project-header">
             <h2>Ingeniería Mecánica y Ensamblaje</h2>
-            <p style="color: #aaa; margin-bottom: 3rem;">Desarrollo de prototipos funcionales y estructuras mecánicas de precisión.</p>
+            <p class="scroll-reveal" style="color: var(--text-secondary); margin-bottom: 3rem;">Desarrollo de prototipos funcionales y estructuras mecánicas de precisión.</p>
         </div>
         <section class="grid" style="grid-template-columns: 1fr;">
-            <div class="card-proj" onclick="navegar('proyecto-turbici-inicio')" style="border-left-color: var(--accent-color); background: #1a1a1a;">
+            <a href="#proyecto-turbici-inicio" class="card-proj scroll-reveal" style="border-left-color: var(--accent); background: var(--bg-elevated); text-decoration:none; display:block;">
                 <div class="proj-tags">PROYECTO PRINCIPAL / MECÁNICA / JET</div>
                 <h3>Turbici: Integración Turbina Jet</h3>
                 <p>El proyecto que une todas mis habilidades. Adaptación de turbina jet a chasis ligero.</p>
-            </div>
-            <div class="card-proj" onclick="navegar('proyecto-estufa')">
+            </a>
+            <a href="#proyecto-estufa" class="card-proj scroll-reveal" style="text-decoration:none; display:block;">
                 <div class="proj-tags">SOLDADURA / ESTRUCTURAS</div>
                 <h3>Estufa de Metal (Prácticas Ayuntamiento)</h3>
                 <p>Diseño y fabricación de estufa de tubo cuadrado de metal con enfoque en soldadura profesional.</p>
-            </div>
-            <div class="card-proj" onclick="navegar('proyecto-caja-cerveza')">
+            </a>
+            <a href="#proyecto-caja-cerveza" class="card-proj scroll-reveal" style="text-decoration:none; display:block;">
                 <div class="proj-tags">MECÁNICA / MULTIDISCIPLINAR</div>
                 <h3>Triciclo Eléctrico Caja de Cerveza</h3>
                 <p>Vehículo de movilidad personal: patín eléctrico integrado en estructura de caja de cerveza.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-patinete')">
+            </a>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-patinete')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">MECÁNICA / MOTOR GASOLINA</div>
                 <h3>Patinete para Niños Motorizado</h3>
                 <p>Integración mecánica de un motor de gasolina en un patinete infantil convencional.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-desmontaje')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-desmontaje')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">MICROMECÁNICA</div>
                 <h3>Desmontaje y Análisis de Máquina de Escribir</h3>
                 <p>Análisis forense de micromecánica automatizada: desmontaje del carrete y control.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-mecanizado')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-mecanizado')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">MECANIZADO / PRECISIÓN</div>
                 <h3>Trabajos de Mecanizado</h3>
                 <p>Procesos de mecanizado de piezas de precisión.</p>
-            </div>
+            </button>
         </section>
     </div>
 
     <div id="categoria-aditiva" class="page container">
-        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a Categorías</a>
         <div class="project-header">
             <h2>Fabricación Aditiva y Prototipado 3D</h2>
-            <p style="color: #aaa; margin-bottom: 3rem;">Modelado mecánico en Siemens NX y control del proceso de impresión para piezas funcionales.</p>
+            <p class="scroll-reveal" style="color: var(--text-secondary); margin-bottom: 3rem;">Modelado mecánico en Siemens NX y control del proceso de impresión para piezas funcionales.</p>
         </div>
         <section class="grid" style="grid-template-columns: 1fr;">
-            <div class="card-proj" onclick="navegar('proyecto-pneumaflex')" style="border-left-color: var(--accent-color); background: #1a1a1a;">
+            <a href="#proyecto-pneumaflex" class="card-proj scroll-reveal" style="border-left-color: var(--accent); background: var(--bg-elevated); text-decoration:none; display:block;">
                 <div class="proj-tags">PROYECTO PRINCIPAL / PREMIO</div>
                 <h3>Pneumaflex: Actuadores Neumáticos Flexibles 3D</h3>
                 <p>El proyecto más galardonado. Desarrollo de actuadores flexibles e impresos en 3D para mecatrónica.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-3d')">
+            </a>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-3d')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">IMPRESIÓN 3D / MODELADO</div>
                 <h3>Proyectos de Impresión 3D Variados</h3>
                 <p>Galería extensa de modelado e impresión de piezas funcionales.</p>
-            </div>
+            </button>
         </section>
     </div>
 
     <div id="categoria-electronica" class="page container">
-        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a Categorías</a>
         <div class="project-header">
             <h2>Ingeniería de Control y Electrónica</h2>
-            <p style="color: #aaa; margin-bottom: 3rem;">Diseño de circuitos, programación de microcontroladores y diagnóstico de equipos.</p>
+            <p class="scroll-reveal" style="color: var(--text-secondary); margin-bottom: 3rem;">Diseño de circuitos, programación de microcontroladores y diagnóstico de equipos.</p>
         </div>
         <section class="grid" style="grid-template-columns: 1fr;">
-            <div class="card-proj" onclick="navegar('proyecto-electromedicina')">
+            <a href="#proyecto-electromedicina" class="card-proj scroll-reveal" style="text-decoration:none; display:block;">
                 <div class="proj-tags">ELECTROMEDICINA / PRÁCTICAS</div>
                 <h3>Gestión y Reparación de Equipos de Electromedicina</h3>
                 <p>Experiencia diagnóstica en Hospital Txagorritxu con equipos médicos hospitalarios.</p>
-            </div>
-            <div class="card-proj" onclick="navegar('proyecto-osciloscopios')">
+            </a>
+            <a href="#proyecto-osciloscopios" class="card-proj scroll-reveal" style="text-decoration:none; display:block;">
                 <div class="proj-tags">INSTRUMENTACIÓN / REPARACIÓN</div>
                 <h3>Restauración de Osciloscopios Analógicos</h3>
                 <p>Desmontaje, diagnóstico y reparación de instrumentación electrónica analógica clásica.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-arduino')">
+            </a>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-arduino')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ARDUINO / CONTROL</div>
                 <h3>Proyectos con Arduino</h3>
                 <p>Desarrollo de sistemas de control utilizando placas microcontroladoras Arduino.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-coche-arduino')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-coche-arduino')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ARDUINO / RC</div>
                 <h3>Coche RC Inteligente por App (Arduino)</h3>
                 <p>Desarrollo de vehículo controlado por microcontrolador y app móvil.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-extra')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-extra')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ELECTRÓNICA / VARIOS</div>
                 <h3>Proyectos Electrónicos Extra</h3>
                 <p>Recopilación de reparaciones y prototipos electrónicos adicionales.</p>
-            </div>
+            </button>
         </section>
     </div>
 
     <div id="categoria-ciencia" class="page container">
-        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver a Categorías</div>
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a Categorías</a>
         <div class="project-header">
             <h2>Ciencia Aplicada e I+D Experimental</h2>
-            <p style="color: #aaa; margin-bottom: 3rem;">Investigación práctica sobre física de vacío, alto voltaje y óptica.</p>
+            <p class="scroll-reveal" style="color: var(--text-secondary); margin-bottom: 3rem;">Investigación práctica sobre física de vacío, alto voltaje y óptica.</p>
         </div>
         <section class="grid" style="grid-template-columns: 1fr;">
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-baragrafo')">
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-baragrafo')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ALTO VOLTAJE / VACÍO</div>
                 <h3>Barágrafo Nixie</h3>
                 <p>Experimentación técnica de alto voltaje con tubo barágrafo.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-tuboneon')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-tuboneon')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ALTO VOLTAJE / GAS</div>
                 <h3>Tubos de Neón</h3>
                 <p>Pruebas y proyectos visuales utilizando tubos de gas de neón.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-tubonixie')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-tubonixie')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ALTO VOLTAJE / NIXIE</div>
                 <h3>Tubos Nixie y Magic Eye</h3>
                 <p>Experimentación con tubos de vacío clásicos para displays numéricos.</p>
-            </div>
-            <div class="card-proj" onclick="abrirModalExtendido('tpl-microscopio')">
+            </button>
+            <button class="card-proj scroll-reveal" onclick="abrirModalExtendido('tpl-microscopio')" style="text-align:left; border:none; width:100%; font-family:var(--font-body);">
                 <div class="proj-tags">ÓPTICA / CIENCIA</div>
                 <h3>Proyectos de Microscopía</h3>
                 <p>Adaptaciones, mejoras e investigaciones utilizando equipo de microscopía.</p>
-            </div>
+            </button>
         </section>
     </div>
 
     <div id="proyecto-turbici-inicio" class="page container">
-        <div class="btn-volver" onclick="navegar('pantalla-inicio')">← Volver al inicio</div>
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver al inicio</a>
         <div class="project-header" style="text-align: center; margin-bottom: 3rem;">
             <h2>Turbici: Integración Turbina Jet</h2>
-            <p><strong>El proyecto que une todas mis habilidades.</strong></p>
+            <p class="scroll-reveal"><strong>El proyecto que une todas mis habilidades.</strong></p>
         </div>
         <section class="grid" style="margin-bottom: 4rem;">
-            <div class="card-cat" style="background: var(--card-bg);" onclick="navegar('turbici-mecanica')">
+            <a href="#turbici-mecanica" class="card-cat scroll-reveal" style="background: var(--bg-elevated); text-decoration:none; display:block;">
                 <h3>⚙️ Parte I: Mecánica</h3>
                 <p>Análisis de chasis, resolución térmica y adaptación.</p>
-            </div>
-            <div class="card-cat" style="background: var(--card-bg);" onclick="navegar('turbici-electronica')">
+            </a>
+            <a href="#turbici-electronica" class="card-cat scroll-reveal" style="background: var(--bg-elevated); text-decoration:none; display:block;">
                 <h3>⚡ Parte II: Electrónica</h3>
                 <p>Controlador Arduino, señal RC y caja 3D.</p>
-            </div>
-            <div class="card-cat" style="background: var(--card-bg); border-bottom-color: #ff0055;" onclick="navegar('turbici-videos')">
+            </a>
+            <a href="#turbici-videos" class="card-cat scroll-reveal" style="background: var(--bg-elevated); border-bottom-color: #ff0055; text-decoration:none; display:block;">
                 <h3>🎬 Parte III: Vídeos</h3>
                 <p>Pruebas de encendido, test de empuje y proyecto en acción.</p>
-            </div>
+            </a>
         </section>
     </div>
     

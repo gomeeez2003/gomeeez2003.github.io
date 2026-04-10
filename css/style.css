@@ -410,6 +410,35 @@ footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: var(-
     color: var(--accent);
 }
 
+/* --- BOTONES BASE A11Y --- */
+.nav-btn {
+    background: none; border: none; color: inherit; font: inherit; padding: 0; cursor: pointer; display: block; width: 100%; text-align: left;
+}
+.btn-volver {
+    display: inline-flex;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: 0.3s;
+    background: none; border: none; font: inherit; padding: 0;
+}
+.btn-volver:hover { color: var(--accent); transform: translateX(-5px); }
+
+/* --- A11Y: Focus visible para navegación por teclado --- */
+a:focus-visible, button:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
+
+/* --- ANIMACIONES DE SCROLL (REVEAL) --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* --- EFECTO TERMINAL (TYPING) --- */
 .typing-cursor {
     display: inline-block;
@@ -423,4 +452,34 @@ footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: var(-
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+
+/* ================================================
+   PASO 5: MÓVIL Y RESPONSIVIDAD (MEDIA QUERIES)
+   ================================================ */
+@media (max-width: 768px) {
+    /* Hero y tipografía */
+    .hero { padding: 6rem 1rem 4rem; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .hero-text h2 { font-size: 1.2rem; margin-top: 1rem; }
+    
+    /* Foto principal y anillo gradiente */
+    .photo-wrapper, .photo-wrapper::before, .photo-wrapper::after { width: 156px; height: 156px; }
+    .profile-photo { width: 150px; height: 150px; }
+    
+    /* Grids y Layouts */
+    .grid { gap: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .habilidades-clave { padding: 3rem 1rem; }
+    
+    /* Menú móvil */
+    .nav-menu { width: 100%; text-align: center; border-radius: 0; }
+    .nav-logo { font-size: 1.2rem; }
+    
+    /* Iframes de YouTube Responsivos */
+    iframe.media-proyecto { width: 100%; height: auto; min-height: 200px; }
+    
+    .contact-section { padding: 3rem 1rem; }
+    .contact-title { font-size: 2rem; }
+}
+
 
