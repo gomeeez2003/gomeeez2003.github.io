@@ -306,3 +306,107 @@ footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: var(-
 }
 .hero-container > *:nth-child(1) { animation-delay: 0.05s; }
 .hero-container > *:nth-child(2) { animation-delay: 0.20s; }
+
+/* ================================================
+   PASO 4: SECCIÓN DE CONTACTO PREMIUM
+   ================================================ */
+
+.contact-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    min-height: 80vh;
+}
+
+.contact-hero {
+    text-align: center;
+}
+
+.contact-title {
+    font-size: 3rem;
+    color: #fff;
+    margin: 0 0 1rem;
+}
+
+.contact-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Grid de 4 tarjetas: 2x2 en móvil, 4 en fila en escritorio */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    width: 100%;
+}
+
+/* Tarjeta de contacto */
+.contact-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-dim);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px var(--accent-glow);
+}
+
+.contact-card:hover::before { opacity: 1; }
+
+.contact-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+    position: relative;
+}
+
+.contact-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    position: relative;
+    word-break: break-all;
+}
+
+.contact-card:hover .contact-value {
+    color: var(--accent);
+}
+
