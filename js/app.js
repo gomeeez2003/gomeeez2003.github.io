@@ -115,3 +115,81 @@ document.body.addEventListener('click', function(e) {
 function cerrarLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
+
+/* ================================================
+   PASO 3: EFECTOS EXTRAS (HERO)
+   ================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Efecto Typewriter (Terminal)
+    const typedTextElement = document.getElementById('typed-text');
+    if (typedTextElement) {
+        const textToType = "Técnico en Mecatrónica Industrial (Nº1 Promoción) | Maker & I+D";
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                typedTextElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 40); // Velocidad de escritura
+            }
+        }
+        
+        // Pequeño delay antes de empezar a escribir
+        setTimeout(typeWriter, 500);
+    }
+
+    // 2. Inicialización de particles.js
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#00e5b8" }, // Color acento
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.4,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00e5b8",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": { "enable": false }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.6 } },
+                    "push": { "particles_nb": 3 }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+});

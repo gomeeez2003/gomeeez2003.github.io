@@ -72,8 +72,8 @@ nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top
 .nav-menu li a { color: inherit; text-decoration: none; display: block; }
 
 /* --- HERO SECTION --- */
-.hero { position: relative; padding: 8rem 2rem 6rem; text-align: center; overflow: hidden; background-color: var(--bg-primary); border-bottom: 1px solid var(--border-subtle); }
-.hero-bg-animated { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; background-image: linear-gradient(var(--text-muted) 1px, transparent 1px), linear-gradient(90deg, var(--text-muted) 1px, transparent 1px); background-size: 50px 50px; animation: backgroundSlide 20s linear infinite; z-index: 1; }
+.hero { position: relative; padding: 8rem 2rem 6rem; text-align: center; overflow: hidden; background-color: var(--bg-primary); border-bottom: 1px solid var(--border-subtle); z-index: 1; }
+#particles-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 .hero-container { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2rem; animation: fadeIn 1s ease-out; }
 .profile-photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent); box-shadow: 0 0 20px var(--accent-glow); transition: all 0.3s; }
 .profile-photo:hover { transform: scale(1.05); box-shadow: 0 0 35px var(--accent); }
@@ -408,5 +408,19 @@ footer { text-align: center; padding: 4rem 2rem; font-size: 0.9rem; color: var(-
 
 .contact-card:hover .contact-value {
     color: var(--accent);
+}
+
+/* --- EFECTO TERMINAL (TYPING) --- */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--accent);
+    margin-left: 4px;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
