@@ -16,9 +16,12 @@
     <meta name="twitter:title"       content="Adrián Gómez | Mecatrónico &amp; Maker">
     <meta name="twitter:description" content="Portfolio técnico: robótica, I+D, fabricación aditiva y electrónica de control.">
     <meta name="twitter:image"       content="https://gomeeez2003.github.io/img/adrian-gomez.jpg">
+    <!-- Fuentes: preconnect + carga no bloqueante (media trick) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;1,14..32,300&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"></noscript>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -653,7 +656,8 @@
         <img id="lightbox-img" src="">
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- particles.js auto-hospedado: sin latencia CDN, defer mantiene el orden -->
+    <script src="js/particles.min.js" defer></script>
     <script src="js/app.js" defer></script>
 </body>
 </html>
