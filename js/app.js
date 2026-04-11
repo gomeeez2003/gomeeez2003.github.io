@@ -16,9 +16,14 @@ window.addEventListener('hashchange', function() {
         cerrarModalLogica();
     }
 
+    const lightboxElem = document.getElementById('lightbox');
+    if (lightboxElem && lightboxElem.style.display === 'flex' && hash !== 'lightbox-abierto') {
+        lightboxElem.style.display = 'none';
+    }
+
     if (!hash) hash = 'pantalla-inicio';
 
-    if (hash !== 'ventana-abierta') {
+    if (hash !== 'ventana-abierta' && hash !== 'lightbox-abierto') {
         const destino = document.getElementById(hash);
         if (destino && destino.classList.contains('page')) {
 
@@ -252,11 +257,16 @@ function initApp() {
         if (e.target.tagName === 'IMG' && e.target.classList.contains('media-proyecto')) {
             document.getElementById('lightbox-img').src = e.target.src;
             document.getElementById('lightbox').style.display = 'flex';
+            window.location.hash = 'lightbox-abierto';
         }
     });
 
     window.cerrarLightbox = function() {
-        document.getElementById('lightbox').style.display = 'none';
+        if (window.location.hash === '#lightbox-abierto') {
+            window.history.back();
+        } else {
+            document.getElementById('lightbox').style.display = 'none';
+        }
     };
 
     // ---- NAVEGACIÓN INICIAL (HASH) ----
