@@ -505,7 +505,7 @@ a:focus-visible, button:focus-visible { outline: 2px dashed var(--accent); outli
     .hero-text h2 { font-size: 1.2rem; margin-top: 1rem; }
     
     /* Foto principal y anillo gradiente */
-    .photo-wrapper, .photo-wrapper::before, .photo-wrapper::after { width: 156px; height: 156px; }
+    .photo-wrapper { width: 156px; height: 156px; }
     .profile-photo { width: 150px; height: 150px; }
     
     /* Grids y Layouts */
