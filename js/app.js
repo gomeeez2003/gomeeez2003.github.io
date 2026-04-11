@@ -45,7 +45,7 @@ window.addEventListener('hashchange', function() {
 });
 
 // ---- INICIALIZACIÓN AL CARGA ----
-document.addEventListener('DOMContentLoaded', function() {
+function initApp() {
 
     // --- Variables del DOM (safe, ya está cargado) ---
     const navMenu    = document.getElementById('nav-menu');
@@ -302,4 +302,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-}); // fin DOMContentLoaded
+} // fin initApp
+    
+// Ejecutar de forma segura independientemente de si el DOM cargó antes o después del script
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
