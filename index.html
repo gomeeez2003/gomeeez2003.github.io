@@ -90,8 +90,12 @@
                 <a href="#proyecto-turbici-inicio" class="btn-volver" style="text-decoration: none; margin-top: 2rem; font-size: 1.1rem; padding: 0.8rem 1.5rem; display: inline-block;">Ver Detalles de Ingeniería de Turbici →</a>
             </section>
 
-            <div class="search-container">
-                <input type="text" id="buscador" placeholder="Buscar proyectos por keyword (ej: vacío, arduino...)" onkeyup="filtrarCategorias()">
+            <div class="search-container" id="search-wrapper">
+                <input type="text" id="buscador" autocomplete="off"
+                    placeholder="🔍 Buscar proyectos, categorías... (ej: arduino, turbici, vacuum)"
+                    oninput="buscarProyectos(this.value)"
+                    onkeydown="navegarResultados(event)">
+                <div id="search-results" class="search-results" role="listbox" aria-label="Resultados de búsqueda"></div>
             </div>
 
             <section class="grid" id="lista-categorias">
