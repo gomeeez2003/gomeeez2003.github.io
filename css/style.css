@@ -105,13 +105,15 @@ nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top
 
 /* Cuadrículas y Tarjetas */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
-.card-cat { background-color: var(--bg-elevated); padding: 2rem; border-radius: 12px; border-bottom: 4px solid var(--accent); transition: all 0.3s; cursor: pointer; text-align: center; position: relative; }
+.card-cat { background-color: var(--bg-elevated); padding: 2rem; border-radius: 12px; border-bottom: 4px solid var(--accent); transition: all 0.3s; cursor: pointer; text-align: center; position: relative; color: var(--text-primary); text-decoration: none; }
 .card-cat:hover { transform: translateY(-5px); border-bottom-color: #fff; animation: pulseGlow 2s infinite; }
 .card-cat h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
+.card-cat p { color: var(--text-secondary); line-height: 1.5; }
 
-.card-proj { background-color: var(--bg-elevated); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--border-subtle); transition: all 0.3s; cursor: pointer; position: relative; }
+.card-proj { background-color: var(--bg-elevated); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--border-subtle); transition: all 0.3s; cursor: pointer; position: relative; color: var(--text-primary); text-decoration: none; text-align: left; }
 .card-proj:hover { transform: translateX(8px); border-left-color: var(--accent); animation: pulseGlow 2s infinite; }
 .card-proj h3 { color: var(--text-primary); margin: 0 0 0.5rem; }
+.card-proj p { color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; }
 .proj-tags { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
 
 .btn-volver { display: inline-flex; align-items: center; margin-bottom: 2rem; padding: 0.5rem 1rem; background-color: var(--bg-elevated); color: var(--text-primary); border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
