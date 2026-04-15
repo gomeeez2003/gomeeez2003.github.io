@@ -45,7 +45,105 @@ const textos = {
         'label-telefono': 'Teléfono',
         'label-linkedin': 'LinkedIn',
         'label-github': 'GitHub',
-        'footer-text': '© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.'
+        'footer-text': '© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.',
+        'tag-principal': 'PROYECTO PRINCIPAL / MECÁNICA / JET',
+        'tag-soldadura': 'SOLDADURA / ESTRUCTURAS',
+        'tag-mecanica-multi': 'MECÁNICA / MULTIDISCIPLINAR',
+        'tag-mecanica-gas': 'MECÁNICA / MOTOR GASOLINA',
+        'tag-micromecanica': 'MICROMECÁNICA',
+        'tag-mecanizado': 'MECANIZADO / PRECISIÓN',
+        'tag-premio': 'PROYECTO PRINCIPAL / PREMIO',
+        'tag-modelado': 'IMPRESIÓN 3D / MODELADO',
+        'tag-practicas': 'ELECTROMEDICINA / PRÁCTICAS',
+        'tag-reparacion': 'INSTRUMENTACIÓN / REPARACIÓN',
+        'tag-arduino': 'ARDUINO / CONTROL',
+        'tag-rc': 'ARDUINO / RC',
+        'tag-electronica-extra': 'ELECTRÓNICA / VARIOS',
+        'tag-hv-vacio': 'ALTO VOLTAJE / VACÍO',
+        'tag-hv-nixie': 'ALTO VOLTAJE / NIXIE',
+        'tag-gases': 'GASES NOBLES / PLASMA',
+        'tag-optica': 'ÓPTICA / INVESTIGACIÓN',
+        'cat-mecanica-header': 'Ingeniería Mecánica y Ensamblaje',
+        'cat-mecanica-subheader': 'Desarrollo de prototipos funcionales y estructuras mecánicas de precisión.',
+        'proj-turbici-titulo': 'Turbici: Integración Turbina Jet',
+        'proj-turbici-desc': 'El proyecto que une todas mis habilidades. Adaptación de turbina jet a chasis ligero.',
+        'proj-estufa-titulo': 'Estufa de Metal (Prácticas Ayuntamiento)',
+        'proj-estufa-desc': 'Diseño y fabricación de estufa de tubo cuadrado de metal con enfoque en soldadura profesional.',
+        'proj-caja-cerveza-titulo': 'Triciclo Eléctrico Caja de Cerveza',
+        'proj-caja-cerveza-desc': 'Vehículo de movilidad personal: patín eléctrico integrado en estructura de caja de cerveza.',
+        'proj-patinete-titulo': 'Patinete para Niños Motorizado',
+        'proj-patinete-desc': 'Integración mecánica de un motor de gasolina en un patinete infantil convencional.',
+        'proj-desmontaje-titulo': 'Desmontaje y Análisis de Máquina de Escribir',
+        'proj-desmontaje-desc': 'Análisis forense de micromecánica automatizada: desmontaje del carrete y control.',
+        'proj-mecanizado-titulo': 'Trabajos de Mecanizado',
+        'proj-mecanizado-desc': 'Procesos de mecanizado de piezas de precisión.',
+        'cat-aditiva-header': 'Fabricación Aditiva y Prototipado 3D',
+        'cat-aditiva-subheader': 'Modelado mecánico en Siemens NX y control del proceso de impresión para piezas funcionales.',
+        'proj-pneumaflex-titulo': 'Pneumaflex: Actuadores Neumáticos Flexibles 3D',
+        'proj-pneumaflex-desc': 'El proyecto más galardonado. Desarrollo de actuadores flexibles e impresos en 3D para mecatrónica.',
+        'proj-3d-titulo': 'Proyectos de Impresión 3D Variados',
+        'proj-3d-desc': 'Galería extensa de modelado e impresión de piezas funcionales.',
+        'cat-electronica-header': 'Ingeniería de Control y Electrónica',
+        'cat-electronica-subheader': 'Diseño de circuitos, programación de microcontroladores y diagnóstico de equipos.',
+        'proj-electromedicina-titulo': 'Gestión y Reparación de Equipos de Electromedicina',
+        'proj-electromedicina-desc': 'Experiencia diagnóstica en Hospital Txagorritxu con equipos médicos hospitalarios.',
+        'proj-osciloscopio-titulo': 'Restauración de Osciloscopios Analógicos',
+        'proj-osciloscopio-desc': 'Desmontaje, diagnóstico y reparación de instrumentación electrónica analógica clásica.',
+        'proj-arduino-titulo': 'Proyectos con Arduino',
+        'proj-arduino-desc': 'Desarrollo de sistemas de control utilizando placas microcontroladoras Arduino.',
+        'proj-coche-titulo': 'Coche RC Inteligente por App (Arduino)',
+        'proj-coche-desc': 'Desarrollo de vehículo controlado por microcontrolador y app móvil.',
+        'proj-extra-titulo': 'Proyectos Electrónicos Extra',
+        'proj-extra-desc': 'Recopilación de reparaciones y prototipos electrónicos adicionales.',
+        'cat-ciencia-header': 'Ciencia Aplicada e I+D Experimental',
+        'cat-ciencia-subheader': 'Investigación en física de vacío, plasma, sistemas láser y displays vintage de alto voltaje.',
+        'proj-baragrafo-titulo': 'Barágrafo Nixie',
+        'proj-baragrafo-desc': 'Experimentación técnica de alto voltaje con tubo barágrafo.',
+        'proj-neon-titulo': 'Tubos de Neón y Plasma',
+        'proj-neon-desc': 'Experimentos con descarga de gases en condiciones de baja presión.',
+        'proj-nixie-titulo': 'Tubos Nixie y Magic Eye',
+        'proj-nixie-desc': 'Experimentación con tubos de vacío clásicos para displays numéricos.',
+        'proj-microscopio-titulo': 'Proyectos de Microscopía',
+        'proj-microscopio-desc': 'Modificación y mejora de sistemas ópticos para micro-fotografía científica.',
+        'turbici-main-h2': 'Turbici: Integración Turbina Jet',
+        'turbici-main-p': 'PROYECTO DESTACADO',
+        'turbici-card-mec-h3': '🔧 Ingeniería del Chasis',
+        'turbici-card-mec-p': 'Anclajes térmicos, soldadura estructural y refuerzos.',
+        'turbici-card-elec-h3': '🎛️ Controler Electrónico',
+        'turbici-card-elec-p': 'Sistemas de encendido, monitorización y mando RC.',
+        'turbici-card-video-p': 'Pruebas de encendido, test de empuje y proyecto en acción.',
+        'turbici-mec-fase1-h3': 'Fase 1: Refuerzo y Modificación del Chasis',
+        'turbici-mec-fase1-p': 'Para poder soportar el inmenso empuje lineal de la turbina, fue necesario someter el cuadro de la bicicleta a un rediseño estructural, aplicando técnicas de soldadura TIG/MIG para garantizar la máxima rigidez.',
+        'turbici-mec-fase2-h3': 'Fase 2: Aislamiento Térmico y Anclajes',
+        'turbici-mec-fase2-p': 'La turbina jet alcanza temperaturas críticas en su cámara de combustión. Diseñé un sistema de anclajes mecanizados a medida y barreras de disipación térmica para proteger los componentes cercanos y garantizar la seguridad total.',
+        'turbici-mec-fase3-h3': 'Integración y Packaging 3D',
+        'turbici-mec-fase3-p': 'Toda la placa de control, junto con las baterías y los módulos de señal, fue empaquetada en carcasas personalizadas diseñadas en CAD e impresas en 3D para protegerlas de la intemperie y las vibraciones.',
+        'turbici-elec-fase1-h3': 'Desarrollo del Cerebro Electrónico',
+        'turbici-elec-fase1-p': 'Para gestionar el encendido, la aceleración y los parámetros de seguridad de la turbina, desarrollé un sistema de control basado en Arduino.',
+        'turbici-vid-fase1-h3': 'Pruebas y Funcionamiento en Acción',
+        'turbici-vid-fase1-p': 'Recopilación completa de pruebas dinámicas. Aquí puedes ver desde los primeros encendidos del motor jet hasta la respuesta del control electrónico y la telemetría en tiempo real.',
+        'modal-tag-3d': 'FABRICACIÓN ADITIVA / 3D',
+        'modal-title-3d': 'Proyectos 3D',
+        'modal-tag-arduino': 'ELECTRÓNICA / ARDUINO',
+        'modal-title-arduino': 'Proyectos con Arduino',
+        'modal-tag-coche': 'ARDUINO / RC',
+        'modal-title-coche': 'Coche RC Inteligente',
+        'modal-tag-extra': 'VARIOS',
+        'modal-title-extra': 'Proyectos Extra',
+        'modal-tag-micromecanica': 'MICROMECÁNICA',
+        'modal-title-desmontaje': 'Desmontaje Máquina de Escribir',
+        'modal-tag-mecanizado': 'MECÁNICA DE PRECISIÓN',
+        'modal-title-mecanizado': 'Trabajos de Mecanizado',
+        'modal-tag-optica': 'CIENCIA / ÓPTICA',
+        'modal-title-microscopio': 'Microscopía',
+        'modal-tag-patinete': 'MECÁNICA / MOTOR',
+        'modal-title-patinete': 'Patinete Motorizado',
+        'modal-tag-baragrafo': 'ALTO VOLTAJE',
+        'modal-title-baragrafo': 'Barágrafo Nixie',
+        'modal-tag-neon': 'ALTO VOLTAJE',
+        'modal-title-neon': 'Tubos de Neón',
+        'modal-tag-nixie': 'ALTO VOLTAJE',
+        'modal-title-nixie': 'Tubos Nixie Clásicos'
     },
     'en': {
         'nav-inicio': 'Home',
@@ -70,9 +168,23 @@ const textos = {
         'cat-ciencia-titulo': '🔬 Applied Science and R&D',
         'cat-ciencia-desc': 'Research in high vacuum physics, Nixie tubes, plasma and laser systems.',
         'btn-volver-cat': '← Back to Categories',
-        'btn-volver-inicio': '← Back to Home',
         'btn-volver-turbici': '← Back to Turbici General',
         'btn-volver-atras': '← Go Back',
+        'btn-volver-mecanica': '← Back to Mechanics',
+        'btn-volver-electronica': '← Back to Electronics',
+        'btn-volver-aditiva': '← Back to Additive',
+        'proj-pneumaflex-h2': 'Pneumaflex (Awarded Project)',
+        'proj-pneumaflex-p-main': 'Complete development of 3D-printed flexible pneumatic actuators for automated mechatronic systems (Soft Robotics).',
+        'pneumaflex-f1-h3': 'Phase 1: Conceptualization and Parametric Design',
+        'pneumaflex-f1-p': 'The initial challenge was to achieve bending through controlled air pressure. Using Siemens NX, I designed the first internal air chambers, seeking the perfect balance between material flexibility (TPU) and tear resistance.',
+        'pneumaflex-f2-h3': 'Phase 2: Geometry Evolution and Additive Manufacturing',
+        'pneumaflex-f2-p': 'Destructive testing led us to evolve the geometry. We developed cylindrical and flat actuators, adjusting FDM slicing parameters (infill, perimeters) to dictate exactly where the part should curve under pressure.',
+        'pneumaflex-f3-h3': 'Phase 3: Final Project and Awards',
+        'pneumaflex-f3-p': 'The final result is a robust Soft Robotics system applicable to industry. This multidisciplinary approach joining CAD, 3D Printing, Pneumatics, and Electronics earned me the highest academic recognition in the class.',
+        'proj-caja-h2': 'Beer Crate Trike',
+        'proj-electrom-h2': 'Electromedical Equipment',
+        'proj-oscil-h2': 'Oscilloscope Restoration',
+        'proj-estufa-h2': 'Metal Stove (Welding)',
         'typewriter': 'Industrial Mechatronics Technician (Valedictorian) | Maker & R&D',
         'buscador-loader': '🌐 Loading index...',
         'buscador-no-results': '😕 No results for',
@@ -83,12 +195,118 @@ const textos = {
         'label-telefono': 'Phone',
         'label-linkedin': 'LinkedIn',
         'label-github': 'GitHub',
-        'footer-text': '© 2026 Adrián Gómez Alvarez. Professional Mechatronics.'
+        'footer-text': '© 2026 Adrián Gómez Alvarez. Professional Mechatronics.',
+        'tag-principal': 'MAIN PROJECT / MECHANICS / JET',
+        'tag-soldadura': 'WELDING / STRUCTURES',
+        'tag-mecanica-multi': 'MECHANICS / MULTIDISCIPLINARY',
+        'tag-mecanica-gas': 'MECHANICS / GASOLINE ENGINE',
+        'tag-micromecanica': 'MICROMECHANICS',
+        'tag-mecanizado': 'MACHINING / PRECISION',
+        'tag-premio': 'MAIN PROJECT / AWARDED',
+        'tag-modelado': '3D PRINTING / MODELING',
+        'tag-practicas': 'ELECTROMEDICINE / INTERNSHIP',
+        'tag-reparacion': 'INSTRUMENTATION / REPAIR',
+        'tag-arduino': 'ARDUINO / CONTROL',
+        'tag-rc': 'ARDUINO / RC',
+        'tag-electronica-extra': 'ELECTRONICS / VARIOUS',
+        'tag-hv-vacio': 'HIGH VOLTAGE / VACUUM',
+        'tag-hv-nixie': 'HIGH VOLTAGE / NIXIE',
+        'tag-gases': 'NOBLE GASES / PLASMA',
+        'tag-optica': 'OPTICS / RESEARCH',
+        'cat-mecanica-header': 'Mechanical Engineering and Assembly',
+        'cat-mecanica-subheader': 'Development of functional prototypes and precision mechanical structures.',
+        'proj-turbici-titulo': 'Turbici: Jet Turbine Integration',
+        'proj-turbici-desc': 'The project that joins all my skills. Jet turbine adaptation to light chassis.',
+        'proj-estufa-titulo': 'Metal Stove (Council Internship)',
+        'proj-estufa-desc': 'Design and manufacturing of metal square tube stove with professional welding focus.',
+        'proj-caja-cerveza-titulo': 'Beer Crate Electric Trike',
+        'proj-caja-cerveza-desc': 'Personal mobility vehicle: electric scooter integrated into a beer crate structure.',
+        'proj-patinete-titulo': 'Motorized Child Scooter',
+        'proj-patinete-desc': 'Mechanical integration of a gasoline engine into a conventional child scooter.',
+        'proj-desmontaje-titulo': 'Typewriter Teardown and Analysis',
+        'proj-desmontaje-desc': 'Forensic analysis of automated micromechanics: spool and control teardown.',
+        'proj-mecanizado-titulo': 'Machining Works',
+        'proj-mecanizado-desc': 'Precision part machining processes.',
+        'cat-aditiva-header': 'Additive Manufacturing and 3D Prototyping',
+        'cat-aditiva-subheader': 'Mechanical modeling in Siemens NX and printing process control for functional parts.',
+        'proj-pneumaflex-titulo': 'Pneumaflex: 3D Flexible Pneumatic Actuators',
+        'proj-pneumaflex-desc': 'Most awarded project. Development of flexible 3D printed actuators for mechatronics.',
+        'proj-3d-titulo': 'Various 3D Printing Projects',
+        'proj-3d-desc': 'Extensive gallery of functional parts modeling and printing.',
+        'cat-electronica-header': 'Control Engineering and Electronics',
+        'cat-electronica-subheader': 'Circuit design, microcontroller programming and equipment diagnostics.',
+        'proj-electromedicina-titulo': 'Electromedical Equipment Management',
+        'proj-electromedicina-desc': 'Professional experience in maintenance, calibration and management of medical instrumentation.',
+        'proj-osciloscopio-titulo': 'Analog Oscilloscope Restoration',
+        'proj-osciloscopio-desc': 'Teardown, diagnosis and repair of classic analog electronic instrumentation.',
+        'proj-arduino-titulo': 'Arduino Projects',
+        'proj-arduino-desc': 'Development of control systems using Arduino microcontrollers.',
+        'proj-coche-titulo': 'Smart App RC Car (Arduino)',
+        'proj-coche-desc': 'Development of vehicle controlled by microcontroller and mobile app.',
+        'proj-extra-titulo': 'Extra Electronic Projects',
+        'proj-extra-desc': 'Collection of minor repairs and additional electronic prototypes.',
+        'cat-ciencia-header': 'Applied Science and Experimental R&D',
+        'cat-ciencia-subheader': 'Research in vacuum physics, plasma, laser systems and high voltage vintage displays.',
+        'proj-baragrafo-titulo': 'Nixie Bargraph',
+        'proj-baragrafo-desc': 'High voltage technical experimentation with bargraph tube.',
+        'proj-neon-titulo': 'Neon and Plasma Tubes',
+        'proj-neon-desc': 'Experiments with gas discharge under low pressure conditions.',
+        'proj-nixie-titulo': 'Nixie and Magic Eye Tubes',
+        'proj-nixie-desc': 'Experimentation with classic vacuum tubes for numerical displays.',
+        'proj-microscopio-titulo': 'Microscopy Projects',
+        'proj-microscopio-desc': 'Modification and improvement of optical systems for scientific micro-photography.',
+        'turbici-main-h2': 'Turbici: Jet Turbine Integration',
+        'turbici-main-p': 'FEATURED PROJECT',
+        'turbici-card-mec-h3': '🔧 Chassis Engineering',
+        'turbici-card-mec-p': 'Thermal anchors, structural welding and reinforcements.',
+        'turbici-card-elec-h3': '🎛️ Electronic Controller',
+        'turbici-card-elec-p': 'Ignition systems, monitoring and RC control.',
+        'turbici-card-video-p': 'Ignition tests, thrust test and project in action.',
+        'turbici-mec-fase1-h3': 'Phase 1: Chassis Reinforcement and Modification',
+        'turbici-mec-fase1-p': 'To withstand the immense linear thrust of the turbine, the bicycle frame had to undergo a structural redesign, applying TIG/MIG welding techniques to ensure maximum rigidity.',
+        'turbici-mec-fase2-h3': 'Phase 2: Thermal Insulation and Anchors',
+        'turbici-mec-fase2-p': 'The jet turbine reaches critical temperatures in its combustion chamber. I designed custom machined anchors and thermal dissipation barriers to protect nearby components and ensure total safety.',
+        'turbici-mec-fase3-h3': 'Integration and 3D Packaging',
+        'turbici-mec-fase3-p': 'The entire control board, along with the batteries and signal modules, was packaged in custom CAD-designed and 3D-printed cases to protect them from weather and vibrations.',
+        'turbici-elec-fase1-h3': 'Electronic Brain Development',
+        'turbici-elec-fase1-p': 'To manage the ignition, acceleration, and safety parameters of the turbine, I developed a control system based on Arduino.',
+        'turbici-vid-fase1-h3': 'Action Testing and Operation',
+        'turbici-vid-fase1-p': 'Complete collection of dynamic tests. Here you can see from the first jet engine starts to the electronic control response and real-time telemetry.',
+        'modal-tag-3d': 'ADDITIVE MANUFACTURING / 3D',
+        'modal-title-3d': '3D Projects',
+        'modal-tag-arduino': 'ELECTRONICS / ARDUINO',
+        'modal-title-arduino': 'Arduino Projects',
+        'modal-tag-coche': 'ARDUINO / RC',
+        'modal-title-coche': 'Smart RC Car',
+        'modal-tag-extra': 'VARIOUS',
+        'modal-title-extra': 'Extra Projects',
+        'modal-tag-micromecanica': 'MICROMECHANICS',
+        'modal-title-desmontaje': 'Typewriter Teardown',
+        'modal-tag-mecanizado': 'PRECISION MECHANICS',
+        'modal-title-mecanizado': 'Machining Works',
+        'modal-tag-optica': 'SCIENCE / OPTICS',
+        'modal-title-microscopio': 'Microscopy',
+        'modal-tag-patinete': 'MECHANICS / ENGINE',
+        'modal-title-patinete': 'Motorized Scooter',
+        'modal-tag-baragrafo': 'HIGH VOLTAGE',
+        'modal-title-baragrafo': 'Nixie Bargraph',
+        'modal-tag-neon': 'HIGH VOLTAGE',
+        'modal-title-neon': 'Neon Tubes',
+        'modal-tag-nixie': 'HIGH VOLTAGE',
+        'modal-title-nixie': 'Classic Nixie Tubes'
     }
 };
 
-function cambiarIdioma() {
-    idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
+function cambiarIdioma(manual = true) {
+    if (manual) {
+        idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
+    } else {
+        // Carga inicial: usar el idioma ya establecido (por localStorage o auto-detect)
+    }
+    
+    // Guardar preferencia
+    localStorage.setItem('idiomaPreferido', idiomaActual);
+    
     document.documentElement.lang = idiomaActual;
     
     // Actualizar elementos con data-key
@@ -494,8 +712,13 @@ function initApp() {
 
     // ---- MODALES ----
     window.abrirModalExtendido = function(idPlantilla) {
-        const contenido = document.getElementById(idPlantilla).innerHTML;
-        modalContenedor.innerHTML = contenido;
+        if (idPlantilla) {
+            const contenido = document.getElementById(idPlantilla).innerHTML;
+            modalContenedor.innerHTML = contenido;
+            
+            // Aplicar traducción al contenido inyectado
+            cambiarIdioma(false);
+        }
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         modalAbierto = true;
@@ -533,16 +756,22 @@ function initApp() {
 
     // ---- BOTÓN IDIOMA ----
     const btnId = document.getElementById('btn-idioma');
-    if (btnId) btnId.onclick = cambiarIdioma;
+    if (btnId) btnId.onclick = () => cambiarIdioma(true);
 
-    // ---- DETECCIÓN AUTOMÁTICA DE IDIOMA ----
-    const userLang = navigator.language || navigator.userLanguage;
-    if (userLang && !userLang.toLowerCase().startsWith('es')) {
-        cambiarIdioma(); // Cambia a EN (idiomaActual era 'es')
+    // ---- DETECCIÓN Y PERSISTENCIA DE IDIOMA ----
+    const idiomaGuardado = localStorage.getItem('idiomaPreferido');
+    if (idiomaGuardado) {
+        idiomaActual = idiomaGuardado;
+        cambiarIdioma(false);
     } else {
-        // Asegurar placeholder inicial en ES si no se cambia
-        const busq = document.getElementById('buscador');
-        if (busq) busq.placeholder = textos['es']['buscador-placeholder'];
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang && !userLang.toLowerCase().startsWith('es')) {
+            idiomaActual = 'en';
+            cambiarIdioma(false);
+        } else {
+            // Asegurar etiquetas iniciales en ES
+            cambiarIdioma(false);
+        }
     }
 
     // ---- NAVEGACIÓN INICIAL (HASH) ----
