@@ -808,6 +808,65 @@ function initApp() {
         });
     }
 
+    // ---- CURSOR PERSONALIZADO Y MAGNETISMO ----
+    const cursor = document.querySelector('.custom-cursor');
+    const follower = document.querySelector('.custom-cursor-follower');
+    
+    if (cursor && follower) {
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let followerX = mouseX, followerY = mouseY;
+        let hasMoved = false;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!hasMoved) { cursor.style.opacity = '1'; follower.style.opacity = '1'; hasMoved = true; }
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
+
+        const loop = () => {
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+            follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(loop);
+        };
+        loop();
+
+        // Detectar si el ratón está pulsando algo o pasando sobre un clickeable
+        const checkInteractables = () => {
+            const interactables = document.querySelectorAll('a, button, input, .card-cat, .card-proj, .nav-logo, .btn-volver, .cerrar-modal, .search-result-item');
+            interactables.forEach(el => {
+                // Solo añadir los events si no los tienen ya (para cuando muta el DOM o es simple añadir y listo)
+                el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
+                el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
+            });
+        };
+        checkInteractables();
+
+        // Efecto magnético para botones grandes (Hero CTA y similares)
+        const magnetics = document.querySelectorAll('.btn');
+        magnetics.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.4}px)`;
+                btn.style.transition = 'transform 0.1s linear';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+                btn.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2)';
+            });
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transition = 'none';
+            });
+        });
+        
+        // Re-check interactables when modal opens because content is injected
+        const observer = new MutationObserver(() => checkInteractables());
+        observer.observe(document.getElementById('modal-info-container'), { childList: true, subtree: true });
+    }
+
 } // fin initApp
     
 // Ejecutar de forma segura independientemente de si el DOM cargó antes o después del script

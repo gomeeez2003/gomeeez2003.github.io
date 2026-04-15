@@ -533,4 +533,33 @@ a:focus-visible, button:focus-visible { outline: 2px dashed var(--accent); outli
     .contact-title { font-size: 2rem; }
 }
 
+/* ================================================
+   PASO 6: CURSOR PERSONALIZADO Y MAGNETISMO
+   ================================================ */
+@media (pointer: fine) {
+    body, a, button, input, textarea, .card-proj, .card-cat, .btn-volver, .cerrar-modal, .search-result-item, .nav-logo {
+        cursor: none !important;
+    }
+    
+    .custom-cursor {
+        position: fixed; top: 0; left: 0; width: 6px; height: 6px;
+        background-color: var(--accent); border-radius: 50%;
+        pointer-events: none; z-index: 9999; opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.3s;
+    }
 
+    .custom-cursor-follower {
+        position: fixed; top: 0; left: 0; width: 34px; height: 34px;
+        border: 1px solid var(--accent); border-radius: 50%;
+        pointer-events: none; z-index: 9998; opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.3s;
+    }
+
+    .custom-cursor.hover { width: 10px; height: 10px; background-color: #fff; }
+    .custom-cursor-follower.hover { width: 60px; height: 60px; background-color: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
+}
+@media (pointer: coarse) {
+    .custom-cursor, .custom-cursor-follower { display: none; }
+}
