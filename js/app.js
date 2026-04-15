@@ -25,6 +25,8 @@ function cerrarModalLogica() {
 // ---- NAVEGACIÓN POR HASH ----
 function navegar(idPantalla) { window.location.hash = idPantalla; }
 
+let primeraCarga = true;
+
 window.addEventListener('hashchange', function() {
     let hash = window.location.hash.substring(1);
 
@@ -42,7 +44,7 @@ window.addEventListener('hashchange', function() {
     if (hash !== 'ventana-abierta' && hash !== 'lightbox-abierto') {
         const destino = document.getElementById(hash);
         if (destino && destino.classList.contains('page')) {
-            if (!destino.classList.contains('active')) {
+            if (!destino.classList.contains('active') || primeraCarga) {
                 // Detener vídeos al cambiar de página
                 document.querySelectorAll('.page.active iframe').forEach(iframe => {
                     let clone = iframe.cloneNode(true);
@@ -51,7 +53,7 @@ window.addEventListener('hashchange', function() {
 
                 document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
                 destino.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (!primeraCarga) window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 // Reanimar los scroll-reveal de la página recién activada
                 destino.querySelectorAll('.scroll-reveal').forEach(el => {
@@ -61,6 +63,8 @@ window.addEventListener('hashchange', function() {
                         setTimeout(() => el.classList.add('visible'), 80);
                     });
                 });
+                
+                primeraCarga = false;
             }
         }
     }
