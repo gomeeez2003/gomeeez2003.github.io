@@ -6,6 +6,22 @@
 
 let modalAbierto = false;
 
+function cerrarModalLogica() {
+    const modal = document.getElementById('modal-proyecto');
+    const modalContenedor = document.getElementById('modal-info-container');
+    if (modal) modal.style.display = 'none';
+    document.body.style.overflow = '';
+    if (modalContenedor) {
+        // Detener vídeos al cerrar modal
+        modalContenedor.querySelectorAll('iframe').forEach(iframe => {
+            let clone = iframe.cloneNode(true);
+            iframe.parentNode.replaceChild(clone, iframe);
+        });
+        modalContenedor.innerHTML = '';
+    }
+    modalAbierto = false;
+}
+
 // ---- NAVEGACIÓN POR HASH ----
 function navegar(idPantalla) { window.location.hash = idPantalla; }
 
