@@ -28,7 +28,7 @@ function navegar(idPantalla) { window.location.hash = idPantalla; }
 window.addEventListener('hashchange', function() {
     let hash = window.location.hash.substring(1);
 
-    if (modalAbierto && hash !== 'ventana-abierta') {
+    if (modalAbierto && hash !== 'ventana-abierta' && hash !== 'lightbox-abierto') {
         cerrarModalLogica();
     }
 
@@ -42,25 +42,26 @@ window.addEventListener('hashchange', function() {
     if (hash !== 'ventana-abierta' && hash !== 'lightbox-abierto') {
         const destino = document.getElementById(hash);
         if (destino && destino.classList.contains('page')) {
-
-            // Detener vídeos al cambiar de página
-            document.querySelectorAll('.page.active iframe').forEach(iframe => {
-                let clone = iframe.cloneNode(true);
-                iframe.parentNode.replaceChild(clone, iframe);
-            });
-
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            destino.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Reanimar los scroll-reveal de la página recién activada
-            destino.querySelectorAll('.scroll-reveal').forEach(el => {
-                el.classList.remove('visible');
-                // Pequeño delay para que el reflow ocurra antes de la animación
-                requestAnimationFrame(() => {
-                    setTimeout(() => el.classList.add('visible'), 80);
+            if (!destino.classList.contains('active')) {
+                // Detener vídeos al cambiar de página
+                document.querySelectorAll('.page.active iframe').forEach(iframe => {
+                    let clone = iframe.cloneNode(true);
+                    iframe.parentNode.replaceChild(clone, iframe);
                 });
-            });
+
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                destino.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Reanimar los scroll-reveal de la página recién activada
+                destino.querySelectorAll('.scroll-reveal').forEach(el => {
+                    el.classList.remove('visible');
+                    // Pequeño delay para que el reflow ocurra antes de la animación
+                    requestAnimationFrame(() => {
+                        setTimeout(() => el.classList.add('visible'), 80);
+                    });
+                });
+            }
         }
     }
 });
