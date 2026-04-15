@@ -51,9 +51,11 @@ h1, h2, h3, h4 {
 @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* --- MENÚ HAMBURGUESA ANIMADO --- */
-nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(5px); transition: all 0.3s; }
-.nav-logo { color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; cursor: pointer; z-index: 1002; }
+nav { background-color: var(--nav-bg); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(5px); transition: all 0.3s; }
+.nav-logo { color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; cursor: pointer; z-index: 1002; margin-right: auto; }
 .nav-logo span { color: var(--accent); }
+
+#btn-idioma { cursor: pointer; color: var(--accent); font-weight: bold; margin-right: 20px; font-family: var(--font-display); z-index: 1001; user-select: none; }
 
 .menu-toggle { display: flex; flex-direction: column; cursor: pointer; width: 30px; gap: 6px; z-index: 1001; transition: all 0.3s; }
 .menu-toggle span { background-color: white; height: 3px; width: 100%; border-radius: 2px; transition: all 0.3s ease; transform-origin: left center; }

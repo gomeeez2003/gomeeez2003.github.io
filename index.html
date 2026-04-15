@@ -36,6 +36,7 @@
 
     <nav>
         <div class="nav-logo" onclick="accionMenu('inicio')">Adrián<span>Gómez</span></div>
+        <div id="btn-idioma">🌐 EN</div>
         <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -43,12 +44,12 @@
         </div>
         <div class="nav-menu" id="nav-menu">
             <ul>
-                <li><button class="nav-btn" onclick="accionMenu('inicio')">Inicio</button></li>
-                <li><button class="nav-btn" onclick="accionMenu('proyectos')">Proyectos</button></li>
-                <li><button class="nav-btn" onclick="accionMenu('buscar')">Buscar</button></li>
-                <li><button class="nav-btn" onclick="accionMenu('contacto')">Servicio de impresión 3D</button></li>
-                <li><button class="nav-btn" onclick="accionMenu('contacto')">Contacto</button></li>
-                <li><a href="img/adrian-gomez-cv.pdf" class="nav-btn" target="_blank" download>Descargar CV</a></li>
+                <li><button class="nav-btn" onclick="accionMenu('inicio')" data-key="nav-inicio">Inicio</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('proyectos')" data-key="nav-proyectos">Proyectos</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('buscar')" data-key="nav-buscar">Buscar</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('contacto')" data-key="nav-3d">Servicio de impresión 3D</button></li>
+                <li><button class="nav-btn" onclick="accionMenu('contacto')" data-key="nav-contacto">Contacto</button></li>
+                <li><a href="img/adrian-gomez-cv.pdf" class="nav-btn" target="_blank" download data-key="nav-cv">Descargar CV</a></li>
             </ul>
         </div>
     </nav>
@@ -66,19 +67,19 @@
                     <h2><span id="typed-text"></span><span class="typing-cursor">|</span></h2>
                     <div class="hero-badge">
                         <span class="badge-dot"></span>
-                        Disponible · Vitoria-Gasteiz
+                        <span data-key="hero-status">Disponible · Vitoria-Gasteiz</span>
                     </div>
 
-                    <p class="mini-bio">
+                    <p class="mini-bio" data-key="hero-bio">
                         Transformo ideas extremas en realidad funcional. Especializado en fusionar la ingeniería
                         mecánica tradicional con la innovación electrónica de vanguardia y la fabricación aditiva.
                     </p>
 
                     <div class="cta-buttons">
-                        <button class="btn btn-primary"
+                        <button class="btn btn-primary" data-key="hero-btn-explorar"
                             onclick="document.getElementById('lista-categorias').scrollIntoView({behavior: 'smooth', block: 'start'})">Explorar
                             Proyectos</button>
-                        <a href="#pantalla-contacto" class="btn btn-secondary">Contactar</a>
+                        <a href="#pantalla-contacto" class="btn btn-secondary" data-key="hero-btn-contacto">Contactar</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +88,7 @@
         </header>
 
         <section class="habilidades-clave">
-            <h3>Habilidades de Ingeniería Key</h3>
+            <h3 data-key="sec-habilidades">Habilidades de Ingeniería Key</h3>
             <div class="stack-list">
                 <span class="stack-item">Siemens NX</span>
                 <span class="stack-item">KUKA Robótica</span>
@@ -101,11 +102,11 @@
 
         <div class="container">
             <section class="video-short-container">
-                <h3 style="color: #fff; margin-bottom: 1.5rem;">Integración Jet: Turbina en Chasis Ligero</h3>
+                <h3 style="color: #fff; margin-bottom: 1.5rem;" data-key="main-video-title">Integración Jet: Turbina en Chasis Ligero</h3>
                 <iframe loading="lazy" src="https://www.youtube.com/embed/M02SRsOnkJQ" title="Bici Jet con Turbina"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
-                <a href="#proyecto-turbici-inicio" class="btn-volver"
+                <a href="#proyecto-turbici-inicio" class="btn-volver" data-key="main-video-btn"
                     style="text-decoration: none; margin-top: 2rem; font-size: 1.1rem; padding: 0.8rem 1.5rem; display: inline-block;">Ver
                     Detalles de Ingeniería de Turbici →</a>
             </section>
@@ -122,33 +123,33 @@
                 <a href="#categoria-mecanica" class="card-cat scroll-reveal"
                     data-keywords="mecanica precision soldadura carricoche ayunta ayuntamiento mecanizado"
                     style="text-decoration: none; display: block;">
-                    <h3>⚙️ Mecánica de Precisión</h3>
-                    <p>Diseño de prototipos, mecanizado, micromecánica, soldadura y sistemas neumáticos.</p>
+                    <h3 data-key="cat-mecanica-titulo">⚙️ Mecánica de Precisión</h3>
+                    <p data-key="cat-mecanica-desc">Diseño de prototipos, mecanizado, micromecánica, soldadura y sistemas neumáticos.</p>
                 </a>
                 <a href="#categoria-aditiva" class="card-cat scroll-reveal"
                     data-keywords="3d aditiva laminado nx sputtering actuador flexible prototipado pnemaflex"
                     style="text-decoration: none; display: block;">
-                    <h3>🧊 Fabricación Aditiva y CAD</h3>
-                    <p>Modelado NX, dominio del laminado y materiales para impresión de piezas funcionales.</p>
+                    <h3 data-key="cat-aditiva-titulo">🧊 Fabricación Aditiva y CAD</h3>
+                    <p data-key="cat-aditiva-desc">Modelado NX, dominio del laminado y materiales para impresión de piezas funcionales.</p>
                 </a>
                 <a href="#categoria-electronica" class="card-cat scroll-reveal"
                     data-keywords="electronica control arduino rc digifiz nixie flash pcbs electromedicina osciloscopio mk2"
                     style="text-decoration: none; display: block;">
-                    <h3>⚡ Electrónica y Control</h3>
-                    <p>Programación Arduino, diseño de PCBs, diagnóstico de instrumentación y electromedicina.</p>
+                    <h3 data-key="cat-electronica-titulo">⚡ Electrónica y Control</h3>
+                    <p data-key="cat-electronica-desc">Programación Arduino, diseño de PCBs, diagnóstico de instrumentación y electromedicina.</p>
                 </a>
                 <a href="#categoria-ciencia" class="card-cat scroll-reveal"
                     data-keywords="ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio"
                     style="text-decoration: none; display: block;">
-                    <h3>🔬 Ciencia Aplicada e I+D</h3>
-                    <p>Investigación en física de alto vacío, tubos Nixie, plasma y sistemas láser.</p>
+                    <h3 data-key="cat-ciencia-titulo">🔬 Ciencia Aplicada e I+D</h3>
+                    <p data-key="cat-ciencia-desc">Investigación en física de alto vacío, tubos Nixie, plasma y sistemas láser.</p>
                 </a>
             </section>
         </div>
     </div>
 
     <div id="categoria-mecanica" class="page container">
-        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;" data-key="btn-volver-cat">← Volver a
             Categorías</a>
         <div class="project-header">
             <h2>Ingeniería Mecánica y Ensamblaje</h2>
@@ -195,7 +196,7 @@
     </div>
 
     <div id="categoria-aditiva" class="page container">
-        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;" data-key="btn-volver-cat">← Volver a
             Categorías</a>
         <div class="project-header">
             <h2>Fabricación Aditiva y Prototipado 3D</h2>
@@ -220,7 +221,7 @@
     </div>
 
     <div id="categoria-electronica" class="page container">
-        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;" data-key="btn-volver-cat">← Volver a
             Categorías</a>
         <div class="project-header">
             <h2>Ingeniería de Control y Electrónica</h2>
@@ -262,7 +263,7 @@
     </div>
 
     <div id="categoria-ciencia" class="page container">
-        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver a
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;" data-key="btn-volver-cat">← Volver a
             Categorías</a>
         <div class="project-header">
             <h2>Ciencia Aplicada e I+D Experimental</h2>
@@ -298,7 +299,7 @@
     </div>
 
     <div id="proyecto-turbici-inicio" class="page container">
-        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;">← Volver al
+        <a href="#pantalla-inicio" class="btn-volver" style="text-decoration:none; display:inline-flex;" data-key="btn-volver-inicio">← Volver al
             inicio</a>
         <div class="project-header" style="text-align: center; margin-bottom: 3rem;">
             <h2>Turbici: Integración Turbina Jet</h2>
@@ -324,7 +325,7 @@
     </div>
 
     <div id="turbici-mecanica" class="page container">
-        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')" data-key="btn-volver-turbici">← Volver a Turbici General</div>
         <div class="project-header">
             <h2>Turbici: Mecánica y Chasis</h2>
         </div>
@@ -363,7 +364,7 @@
     </div>
 
     <div id="turbici-electronica" class="page container">
-        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')" data-key="btn-volver-turbici">← Volver a Turbici General</div>
         <div class="project-header">
             <h2>Turbici: Electrónica de Control</h2>
         </div>
@@ -381,7 +382,7 @@
     </div>
 
     <div id="turbici-videos" class="page container">
-        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')">← Volver a Turbici General</div>
+        <div class="btn-volver" onclick="navegar('proyecto-turbici-inicio')" data-key="btn-volver-turbici">← Volver a Turbici General</div>
         <div class="project-header">
             <h2>Turbici: Galería de Vídeos</h2>
         </div>
@@ -545,31 +546,31 @@
     <div id="pantalla-contacto" class="page">
         <div class="contact-section">
             <div class="contact-hero">
-                <h2 class="contact-title">¿Hablamos de tecnología?</h2>
-                <p class="contact-subtitle">Abierto a incorporación en empresas de alta tecnología,<br>I+D y mecatrónica
+                <h2 class="contact-title" data-key="contact-title">¿Hablamos de tecnología?</h2>
+                <p class="contact-subtitle" data-key="contact-subtitle">Abierto a incorporación en empresas de alta tecnología,<br>I+D y mecatrónica
                     de precisión.</p>
             </div>
 
             <div class="contact-grid">
                 <a href="mailto:adriago777@gmail.com" class="contact-card">
                     <div class="contact-icon">✉️</div>
-                    <div class="contact-label">Email</div>
+                    <div class="contact-label" data-key="label-email">Email</div>
                     <div class="contact-value">adriago777@gmail.com</div>
                 </a>
                 <a href="tel:+34644499993" class="contact-card">
                     <div class="contact-icon">📱</div>
-                    <div class="contact-label">Teléfono</div>
+                    <div class="contact-label" data-key="label-telefono">Teléfono</div>
                     <div class="contact-value">+34 644 49 99 93</div>
                 </a>
                 <a href="https://www.linkedin.com/in/adrián-gómez-785705261" target="_blank" rel="noopener"
                     class="contact-card">
                     <div class="contact-icon">💼</div>
-                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-label" data-key="label-linkedin">LinkedIn</div>
                     <div class="contact-value">Adrián Gómez Álvarez</div>
                 </a>
                 <a href="https://github.com/gomeeez2003" target="_blank" rel="noopener" class="contact-card">
                     <div class="contact-icon">🐙</div>
-                    <div class="contact-label">GitHub</div>
+                    <div class="contact-label" data-key="label-github">GitHub</div>
                     <div class="contact-value">gomeeez2003</div>
                 </a>
             </div>
@@ -579,12 +580,12 @@
     </div>
 
     <footer>
-        <p>© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.</p>
+        <p data-key="footer-text">© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.</p>
     </footer>
 
     <div id="modal-proyecto" class="modal" onclick="cerrarModalFuera(event)">
         <div class="modal-contenido">
-            <div class="btn-volver" onclick="cerrarModal()" style="margin-bottom: 1.5rem; border: 1px solid #333;">←
+            <div class="btn-volver" onclick="cerrarModal()" style="margin-bottom: 1.5rem; border: 1px solid #333;" data-key="btn-volver-atras">←
                 Volver atrás</div>
             <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
             <div id="modal-info-container"></div>

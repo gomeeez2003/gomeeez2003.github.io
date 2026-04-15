@@ -5,6 +5,128 @@
    ================================================ */
 
 let modalAbierto = false;
+let idiomaActual = 'es';
+let typewriterTimeout;
+
+const textos = {
+    'es': {
+        'nav-inicio': 'Inicio',
+        'nav-proyectos': 'Proyectos',
+        'nav-buscar': 'Buscar',
+        'nav-3d': 'Servicio de impresión 3D',
+        'nav-contacto': 'Contacto',
+        'nav-cv': 'Descargar CV',
+        'hero-status': 'Disponible · Vitoria-Gasteiz',
+        'hero-bio': 'Transformo ideas extremas en realidad funcional. Especializado en fusionar la ingeniería mecánica tradicional con la innovación electrónica de vanguardia y la fabricación aditiva.',
+        'hero-btn-explorar': 'Explorar Proyectos',
+        'hero-btn-contacto': 'Contactar',
+        'sec-habilidades': 'Habilidades de Ingeniería Key',
+        'main-video-title': 'Integración Jet: Turbina en Chasis Ligero',
+        'main-video-btn': 'Ver Detalles de Ingeniería de Turbici →',
+        'cat-mecanica-titulo': '⚙️ Mecánica de Precisión',
+        'cat-mecanica-desc': 'Diseño de prototipos, mecanizado, micromecánica, soldadura y sistemas neumáticos.',
+        'cat-aditiva-titulo': '🧊 Fabricación Aditiva y CAD',
+        'cat-aditiva-desc': 'Modelado NX, dominio del laminado y materiales para impresión de piezas funcionales.',
+        'cat-electronica-titulo': '⚡ Electrónica y Control',
+        'cat-electronica-desc': 'Programación Arduino, diseño de PCBs, diagnóstico de instrumentación y electromedicina.',
+        'cat-ciencia-titulo': '🔬 Ciencia Aplicada e I+D',
+        'cat-ciencia-desc': 'Investigación en física de alto vacío, tubos Nixie, plasma y sistemas láser.',
+        'btn-volver-cat': '← Volver a Categorías',
+        'btn-volver-inicio': '← Volver al inicio',
+        'btn-volver-turbici': '← Volver a Turbici General',
+        'btn-volver-atras': '← Volver atrás',
+        'typewriter': 'Técnico en Mecatrónica Industrial (Nº1 Promoción) | Maker & I+D',
+        'buscador-loader': '🌐 Cargando índice...',
+        'buscador-no-results': '😕 Sin resultados para',
+        'buscador-placeholder': '🔍 Buscar proyectos, categorías... (ej: arduino, turbici, vacuum)',
+        'contact-title': '¿Hablamos de tecnología?',
+        'contact-subtitle': 'Abierto a incorporación en empresas de alta tecnología, I+D y mecatrónica de precisión.',
+        'label-email': 'Email',
+        'label-telefono': 'Teléfono',
+        'label-linkedin': 'LinkedIn',
+        'label-github': 'GitHub',
+        'footer-text': '© 2026 Adrián Gómez Alvarez. Mecatrónico Profesional.'
+    },
+    'en': {
+        'nav-inicio': 'Home',
+        'nav-proyectos': 'Projects',
+        'nav-buscar': 'Search',
+        'nav-3d': '3D Printing Service',
+        'nav-contacto': 'Contact',
+        'nav-cv': 'Download CV',
+        'hero-status': 'Available · Vitoria-Gasteiz',
+        'hero-bio': 'I transform extreme ideas into functional reality. Specialized in merging traditional mechanical engineering with cutting-edge electronic innovation and additive manufacturing.',
+        'hero-btn-explorar': 'Explore Projects',
+        'hero-btn-contacto': 'Contact',
+        'sec-habilidades': 'Key Engineering Skills',
+        'main-video-title': 'Jet Integration: Turbine in Light Chassis',
+        'main-video-btn': 'View Turbici Engineering Details →',
+        'cat-mecanica-titulo': '⚙️ Precision Mechanics',
+        'cat-mecanica-desc': 'Prototype design, machining, micromechanics, welding and pneumatic systems.',
+        'cat-aditiva-titulo': '🧊 Additive Manufacturing and CAD',
+        'cat-aditiva-desc': 'NX Modeling, laminate mastery and materials for functional parts printing.',
+        'cat-electronica-titulo': '⚡ Electronics and Control',
+        'cat-electronica-desc': 'Arduino programming, PCB design, instrumentation diagnostics and electromedicine.',
+        'cat-ciencia-titulo': '🔬 Applied Science and R&D',
+        'cat-ciencia-desc': 'Research in high vacuum physics, Nixie tubes, plasma and laser systems.',
+        'btn-volver-cat': '← Back to Categories',
+        'btn-volver-inicio': '← Back to Home',
+        'btn-volver-turbici': '← Back to Turbici General',
+        'btn-volver-atras': '← Go Back',
+        'typewriter': 'Industrial Mechatronics Technician (Valedictorian) | Maker & R&D',
+        'buscador-loader': '🌐 Loading index...',
+        'buscador-no-results': '😕 No results for',
+        'buscador-placeholder': '🔍 Search projects, categories... (e.g. arduino, turbici, vacuum)',
+        'contact-title': 'Shall we talk technology?',
+        'contact-subtitle': 'Open to joining high-tech companies, R&D and precision mechatronics.',
+        'label-email': 'Email',
+        'label-telefono': 'Phone',
+        'label-linkedin': 'LinkedIn',
+        'label-github': 'GitHub',
+        'footer-text': '© 2026 Adrián Gómez Alvarez. Professional Mechatronics.'
+    }
+};
+
+function cambiarIdioma() {
+    idiomaActual = idiomaActual === 'es' ? 'en' : 'es';
+    document.documentElement.lang = idiomaActual;
+    
+    // Actualizar elementos con data-key
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (textos[idiomaActual][key]) {
+            if (el.tagName === 'INPUT') {
+                el.placeholder = textos[idiomaActual][key];
+            } else {
+                el.textContent = textos[idiomaActual][key];
+            }
+        }
+    });
+
+    // Actualizar botón de idioma
+    const btn = document.getElementById('btn-idioma');
+    if (btn) btn.innerHTML = `🌐 ${idiomaActual === 'es' ? 'EN' : 'ES'}`;
+
+    // Reiniciar typewriter
+    reiniciarTypewriter();
+}
+
+function reiniciarTypewriter() {
+    const el = document.getElementById('typed-text');
+    if (!el) return;
+    el.textContent = '';
+    clearTimeout(typewriterTimeout);
+    let text = textos[idiomaActual]['typewriter'];
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            typewriterTimeout = setTimeout(type, 40);
+        }
+    }
+    setTimeout(type, 600);
+}
 
 function cerrarModalLogica() {
     const modal = document.getElementById('modal-proyecto');
@@ -103,71 +225,189 @@ function initApp() {
     });
 
     // ---- BUSCADOR AVANZADO ----
-    // Índice completo: cada entrada tiene título, palabras clave, ícono, breadcrumb y acción de navegación
     const SEARCH_INDEX = [
-        // ── CATEGORÍAS PRINCIPALES ──────────────────────────────────────────
-        { title: 'Mecánica de Precisión', icon: '⚙️', breadcrumb: 'Categoría',
-          keys: 'mecanica precision soldadura carricoche ayuntamiento mecanizado chasis estructural tuerca tornillo', action: () => navegar('categoria-mecanica') },
-        { title: 'Fabricación Aditiva y CAD', icon: '🧊', breadcrumb: 'Categoría',
-          keys: '3d aditiva laminado nx siemens sputtering actuador flexible prototipado pneumaflex cad diseño', action: () => navegar('categoria-aditiva') },
-        { title: 'Electrónica y Control', icon: '⚡', breadcrumb: 'Categoría',
-          keys: 'electronica control arduino rc digifiz nixie flash pcb electromedicina osciloscopio mk2 circuito microcontrolador', action: () => navegar('categoria-electronica') },
-        { title: 'Ciencia Aplicada e I+D', icon: '🔬', breadcrumb: 'Categoría',
-          keys: 'ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio alto voltaje', action: () => navegar('categoria-ciencia') },
-
-        // ── MECÁNICA — PROYECTOS ────────────────────────────────────────────
-        { title: 'Turbici: Integración Turbina Jet', icon: '🚀', breadcrumb: 'Mecánica › Proyecto principal',
-          keys: 'turbici turbina jet bici bicicleta chasis ligero soldadura tig mig adaptacion empuje combustion', action: () => navegar('proyecto-turbici-inicio') },
-        { title: 'Turbici — Parte Mecánica y Chasis', icon: '🔩', breadcrumb: 'Turbici › Mecánica',
-          keys: 'turbici chasis cuadro soldadura termico anclaje refuerzo deposito brida', action: () => navegar('turbici-mecanica') },
-        { title: 'Turbici — Electrónica de Control', icon: '🎛️', breadcrumb: 'Turbici › Electrónica',
-          keys: 'turbici arduino rc electronica control señal caja 3d encendido', action: () => navegar('turbici-electronica') },
-        { title: 'Turbici — Vídeos de Prueba', icon: '🎬', breadcrumb: 'Turbici › Vídeos',
-          keys: 'turbici video prueba encendido empuje turbina en accion', action: () => navegar('turbici-videos') },
-        { title: 'Estufa de Metal (Soldadura)', icon: '🔥', breadcrumb: 'Mecánica › Proyecto',
-          keys: 'estufa metal soldadura tubo cuadrado ayuntamiento prácticas estructura', action: () => navegar('proyecto-estufa') },
-        { title: 'Triciclo Eléctrico Caja de Cerveza', icon: '🛺', breadcrumb: 'Mecánica › Proyecto',
-          keys: 'triciclo electrico caja cerveza patin movilidad personal vehiculo', action: () => navegar('proyecto-caja-cerveza') },
-        { title: 'Patinete para Niños Motorizado', icon: '🛵', breadcrumb: 'Mecánica › Proyecto (modal)',
-          keys: 'patinete niños motorizado gasolina motor mecanica integracion', action: () => abrirModalExtendido('tpl-patinete') },
-        { title: 'Desmontaje Máquina de Escribir', icon: '⌨️', breadcrumb: 'Mecánica › Proyecto (modal)',
-          keys: 'desmontaje maquina escribir micromecánica automatizada carrete control analisis forense', action: () => abrirModalExtendido('tpl-desmontaje') },
-        { title: 'Trabajos de Mecanizado', icon: '🔧', breadcrumb: 'Mecánica › Proyecto (modal)',
-          keys: 'mecanizado precision piezas torno fresa fresado torneado', action: () => abrirModalExtendido('tpl-mecanizado') },
-
-        // ── ADITIVA — PROYECTOS ─────────────────────────────────────────────
-        { title: 'Pneumaflex: Actuadores Neumáticos 3D', icon: '🏆', breadcrumb: 'Aditiva › Proyecto principal',
-          keys: 'pneumaflex actuadores neumaticos flexibles 3d impresion premio mecatronica actuador flexible', action: () => navegar('proyecto-pneumaflex') },
-        { title: 'Proyectos de Impresión 3D Variados', icon: '🖨️', breadcrumb: 'Aditiva › Proyecto (modal)',
-          keys: '3d impresion modelado piezas funcionales galeria variados laminado', action: () => abrirModalExtendido('tpl-3d') },
-
-        // ── ELECTRÓNICA — PROYECTOS ─────────────────────────────────────────
-        { title: 'Gestión de Equipos de Electromedicina', icon: '🏥', breadcrumb: 'Electrónica › Proyecto',
-          keys: 'electromedicina hospital txagorritxu equipos medicos reparacion gestion diagnostico', action: () => navegar('proyecto-electromedicina') },
-        { title: 'Restauración de Osciloscopios Analógicos', icon: '📡', breadcrumb: 'Electrónica › Proyecto',
-          keys: 'osciloscopio analogico restauracion reparacion instrumentacion electronica vintage', action: () => navegar('proyecto-osciloscopios') },
-        { title: 'Proyectos con Arduino', icon: '🤖', breadcrumb: 'Electrónica › Proyecto (modal)',
-          keys: 'arduino control microcontrolador proyectos programacion io sensores', action: () => abrirModalExtendido('tpl-arduino') },
-        { title: 'Coche RC Inteligente por App (Arduino)', icon: '🚗', breadcrumb: 'Electrónica › Proyecto (modal)',
-          keys: 'coche rc inteligente arduino app movil control vehiculo bluetooth', action: () => abrirModalExtendido('tpl-coche-arduino') },
-        { title: 'Proyectos Electrónicos Extra', icon: '🔌', breadcrumb: 'Electrónica › Proyecto (modal)',
-          keys: 'electronica varios extra reparaciones prototipos pcb circuito', action: () => abrirModalExtendido('tpl-extra') },
-
-        // ── CIENCIA — PROYECTOS ─────────────────────────────────────────────
-        { title: 'Barágrafo Nixie (Alto Voltaje)', icon: '⚗️', breadcrumb: 'Ciencia › Proyecto (modal)',
-          keys: 'baragrafo nixie alto voltaje vacio tubo experimentacion', action: () => abrirModalExtendido('tpl-baragrafo') },
-        { title: 'Tubos de Neón', icon: '💡', breadcrumb: 'Ciencia › Proyecto (modal)',
-          keys: 'neon tubo gas alto voltaje visual luz plasma', action: () => abrirModalExtendido('tpl-tuboneon') },
-        { title: 'Tubos Nixie y Magic Eye', icon: '🔢', breadcrumb: 'Ciencia › Proyecto (modal)',
-          keys: 'nixie magic eye tubo vacio display numerico coleccionismo vintage', action: () => abrirModalExtendido('tpl-tubonixie') },
-        { title: 'Proyectos de Microscopía', icon: '🦠', breadcrumb: 'Ciencia › Proyecto (modal)',
-          keys: 'microscopio optica ciencia adaptacion mejora investigacion', action: () => abrirModalExtendido('tpl-microscopio') },
-
-        // ── PÁGINAS / SECCIONES ─────────────────────────────────────────────
-        { title: 'Inicio (Portfolio)', icon: '🏠', breadcrumb: 'Sección',
-          keys: 'inicio home portfolio adrian gomez mecatronico', action: () => navegar('pantalla-inicio') },
-        { title: 'Contacto', icon: '✉️', breadcrumb: 'Sección',
-          keys: 'contacto email telefono linkedin github redes sociales', action: () => navegar('pantalla-contacto') },
+        { 
+            title: { es: 'Mecánica de Precisión', en: 'Precision Mechanics' }, 
+            icon: '⚙️', 
+            breadcrumb: { es: 'Categoría', en: 'Category' },
+            keys: 'mecanica precision soldadura welding carricoche ayuntamiento mecanizado chasis estructural tuerca tornillo', 
+            action: () => navegar('categoria-mecanica') 
+        },
+        { 
+            title: { es: 'Fabricación Aditiva y CAD', en: 'Additive Manufacturing and CAD' }, 
+            icon: '🧊', 
+            breadcrumb: { es: 'Categoría', en: 'Category' },
+            keys: '3d aditiva laminado nx siemens sputtering actuador flexible prototipado pneumaflex cad diseño printing', 
+            action: () => navegar('categoria-aditiva') 
+        },
+        { 
+            title: { es: 'Electrónica y Control', en: 'Electronics and Control' }, 
+            icon: '⚡', 
+            breadcrumb: { es: 'Categoría', en: 'Category' },
+            keys: 'electronica control arduino rc digifiz nixie flash pcb electromedicina osciloscopio mk2 circuito microcontrolador', 
+            action: () => navegar('categoria-electronica') 
+        },
+        { 
+            title: { es: 'Ciencia Aplicada e I+D', en: 'Applied Science and R&D' }, 
+            icon: '🔬', 
+            breadcrumb: { es: 'Categoría', en: 'Category' },
+            keys: 'ciencia investigacion id sputtering vacio plasma laser neon rubi nixie hv microscopio alto voltaje research science vacuum', 
+            action: () => navegar('categoria-ciencia') 
+        },
+        { 
+            title: { es: 'Turbici: Integración Turbina Jet', en: 'Turbici: Jet Turbine Integration' }, 
+            icon: '🚀', 
+            breadcrumb: { es: 'Mecánica › Proyecto principal', en: 'Mechanics › Main Project' },
+            keys: 'turbici turbina jet bici bicicleta chasis ligero soldadura tig mig adaptacion empuje combustion bicycle', 
+            action: () => navegar('proyecto-turbici-inicio') 
+        },
+        { 
+            title: { es: 'Turbici — Parte Mecánica y Chasis', en: 'Turbici — Mechanical Side and Chassis' }, 
+            icon: '🔩', 
+            breadcrumb: { es: 'Turbici › Mecánica', en: 'Turbici › Mechanical' },
+            keys: 'turbici chasis cuadro soldadura termico anclaje refuerzo deposito brida', 
+            action: () => navegar('turbici-mecanica') 
+        },
+        { 
+            title: { es: 'Turbici — Electrónica de Control', en: 'Turbici — Control Electronics' }, 
+            icon: '🎛️', 
+            breadcrumb: { es: 'Turbici › Electrónica', en: 'Turbici › Electronics' },
+            keys: 'turbici arduino rc electronica control señal caja 3d encendido', 
+            action: () => navegar('turbici-electronica') 
+        },
+        { 
+            title: { es: 'Turbici — Vídeos de Prueba', en: 'Turbici — Test Videos' }, 
+            icon: '🎬', 
+            breadcrumb: { es: 'Turbici › Vídeos', en: 'Turbici › Videos' },
+            keys: 'turbici video prueba encendido empuje turbina en accion test', 
+            action: () => navegar('turbici-videos') 
+        },
+        { 
+            title: { es: 'Estufa de Metal (Soldadura)', en: 'Metal Stove (Welding)' }, 
+            icon: '🔥', 
+            breadcrumb: { es: 'Mecánica › Proyecto', en: 'Mechanics › Project' },
+            keys: 'estufa metal soldadura tubo cuadrado ayuntamiento prácticas estructura', 
+            action: () => navegar('proyecto-estufa') 
+        },
+        { 
+            title: { es: 'Triciclo Eléctrico Caja de Cerveza', en: 'Beer Crate Electric Trike' }, 
+            icon: '🛺', 
+            breadcrumb: { es: 'Mecánica › Proyecto', en: 'Mechanics › Project' },
+            keys: 'triciclo electrico caja cerveza patin movilidad personal vehiculo', 
+            action: () => navegar('proyecto-caja-cerveza') 
+        },
+        { 
+            title: { es: 'Patinete para Niños Motorizado', en: 'Motorized Scooter for Kids' }, 
+            icon: '🛵', 
+            breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
+            keys: 'patinete niños motorizado gasolina motor mecanica integracion', 
+            action: () => abrirModalExtendido('tpl-patinete') 
+        },
+        { 
+            title: { es: 'Desmontaje Máquina de Escribir', en: 'Typewriter Teardown' }, 
+            icon: '⌨️', 
+            breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
+            keys: 'desmontaje maquina escribir micromecánica automatizada carrete control analisis forense', 
+            action: () => abrirModalExtendido('tpl-desmontaje') 
+        },
+        { 
+            title: { es: 'Trabajos de Mecanizado', en: 'Machining Works' }, 
+            icon: '🔧', 
+            breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
+            keys: 'mecanizado precision piezas torno fresa fresado torneado', 
+            action: () => abrirModalExtendido('tpl-mecanizado') 
+        },
+        { 
+            title: { es: 'Pneumaflex: Actuadores Neumáticos 3D', en: 'Pneumaflex: 3D Pneumatic Actuators' }, 
+            icon: '🏆', 
+            breadcrumb: { es: 'Aditiva › Proyecto principal', en: 'Additive › Main Project' },
+            keys: 'pneumaflex actuadores neumaticos flexibles 3d impresion premio mecatronica actuador flexible printing', 
+            action: () => navegar('proyecto-pneumaflex') 
+        },
+        { 
+            title: { es: 'Proyectos de Impresión 3D Variados', en: 'Various 3D Printing Projects' }, 
+            icon: '🖨️', 
+            breadcrumb: { es: 'Aditiva › Proyecto (modal)', en: 'Additive › Project (modal)' },
+            keys: '3d impresion modelado piezas funcionales galeria variados laminado printing', 
+            action: () => abrirModalExtendido('tpl-3d') 
+        },
+        { 
+            title: { es: 'Gestión de Equipos de Electromedicina', en: 'Electromedical Equipment Management' }, 
+            icon: '🏥', 
+            breadcrumb: { es: 'Electrónica › Proyecto', en: 'Electronics › Project' },
+            keys: 'electromedicina hospital txagorritxu equipos medicos reparacion gestion diagnostico', 
+            action: () => navegar('proyecto-electromedicina') 
+        },
+        { 
+            title: { es: 'Restauración de Osciloscopios Analógicos', en: 'Analog Oscilloscope Restoration' }, 
+            icon: '📡', 
+            breadcrumb: { es: 'Electrónica › Proyecto', en: 'Electronics › Project' },
+            keys: 'osciloscopio analogico restauracion reparacion instrumentacion electronica vintage repair', 
+            action: () => navegar('proyecto-osciloscopios') 
+        },
+        { 
+            title: { es: 'Proyectos con Arduino', en: 'Arduino Projects' }, 
+            icon: '🤖', 
+            breadcrumb: { es: 'Electrónica › Proyecto (modal)', en: 'Electronics › Project (modal)' },
+            keys: 'arduino control microcontrolador proyectos programacion io sensores', 
+            action: () => abrirModalExtendido('tpl-arduino') 
+        },
+        { 
+            title: { es: 'Coche RC Inteligente por App (Arduino)', en: 'Smart App RC Car (Arduino)' }, 
+            icon: '🚗', 
+            breadcrumb: { es: 'Electrónica › Proyecto (modal)', en: 'Electronics › Project (modal)' },
+            keys: 'coche rc inteligente arduino app movil control vehiculo bluetooth', 
+            action: () => abrirModalExtendido('tpl-coche-arduino') 
+        },
+        { 
+            title: { es: 'Proyectos Electrónicos Extra', en: 'Extra Electronic Projects' }, 
+            icon: '🔌', 
+            breadcrumb: { es: 'Electrónica › Proyecto (modal)', en: 'Electronics › Project (modal)' },
+            keys: 'electronica varios extra reparaciones prototipos pcb circuito', 
+            action: () => abrirModalExtendido('tpl-extra') 
+        },
+        { 
+            title: { es: 'Barágrafo Nixie (Alto Voltaje)', en: 'Nixie Bargraph (High Voltage)' }, 
+            icon: '⚗️', 
+            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
+            keys: 'baragrafo nixie alto voltaje vacio tubo experimentacion vacuum', 
+            action: () => abrirModalExtendido('tpl-baragrafo') 
+        },
+        { 
+            title: { es: 'Tubos de Neón', en: 'Neon Tubes' }, 
+            icon: '💡', 
+            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
+            keys: 'neon tubo gas alto voltaje visual luz plasma', 
+            action: () => abrirModalExtendido('tpl-tuboneon') 
+        },
+        { 
+            title: { es: 'Tubos Nixie y Magic Eye', en: 'Nixie Tubes & Magic Eye' }, 
+            icon: '🔢', 
+            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
+            keys: 'nixie magic eye tubo vacio display numerico coleccionismo vintage', 
+            action: () => abrirModalExtendido('tpl-tubonixie') 
+        },
+        { 
+            title: { es: 'Proyectos de Microscopía', en: 'Microscopy Projects' }, 
+            icon: '🦠', 
+            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
+            keys: 'microscopio optica ciencia adaptacion mejora investigacion microscopy', 
+            action: () => abrirModalExtendido('tpl-microscopio') 
+        },
+        { 
+            title: { es: 'Inicio (Portfolio)', en: 'Home (Portfolio)' }, 
+            icon: '🏠', 
+            breadcrumb: { es: 'Sección', en: 'Section' },
+            keys: 'inicio home portfolio adrian gomez mecatronico', 
+            action: () => navegar('pantalla-inicio') 
+        },
+        { 
+            title: { es: 'Contacto', en: 'Contact' }, 
+            icon: '✉️', 
+            breadcrumb: { es: 'Sección', en: 'Section' },
+            keys: 'contacto email telefono linkedin github redes sociales phone', 
+            action: () => navegar('pantalla-contacto') 
+        },
     ];
 
     let highlightedIndex = -1;
@@ -183,24 +423,25 @@ function initApp() {
             return;
         }
 
-        // Búsqueda: todas las palabras del query deben aparecer en título o keys
         const words = query.split(/\s+/);
         const matches = SEARCH_INDEX.filter(item => {
-            const haystack = (item.title + ' ' + item.keys).toLowerCase();
+            const currentTitle = item.title[idiomaActual].toLowerCase();
+            const currentBreadcrumb = item.breadcrumb[idiomaActual].toLowerCase();
+            const haystack = (currentTitle + ' ' + currentBreadcrumb + ' ' + item.keys).toLowerCase();
             return words.every(w => haystack.includes(w));
-        }).slice(0, 8); // máximo 8 resultados
+        }).slice(0, 8);
 
         highlightedIndex = -1;
 
         if (matches.length === 0) {
-            resultsPanel.innerHTML = '<div class="search-no-results">😕 Sin resultados para "<strong>' + query + '</strong>"</div>';
+            resultsPanel.innerHTML = `<div class="search-no-results">${textos[idiomaActual]['buscador-no-results']} "<strong>${query}</strong>"</div>`;
         } else {
             resultsPanel.innerHTML = matches.map((item, i) =>
                 `<button class="search-result-item" data-index="${i}" onclick="ejecutarResultado(${SEARCH_INDEX.indexOf(item)})">
                     <span class="search-icon">${item.icon}</span>
                     <span class="search-info">
-                        <span class="search-title">${item.title}</span>
-                        <span class="search-breadcrumb">${item.breadcrumb}</span>
+                        <span class="search-title">${item.title[idiomaActual]}</span>
+                        <span class="search-breadcrumb">${item.breadcrumb[idiomaActual]}</span>
                     </span>
                 </button>`
             ).join('');
@@ -247,7 +488,7 @@ function initApp() {
         }
     });
 
-    // (legacy — ya no se necesita, pero se mantiene por si queda algún onkeyup en el HTML)
+    // (legacy)
     window.filtrarCategorias = function() {};
 
 
@@ -290,6 +531,20 @@ function initApp() {
         }
     };
 
+    // ---- BOTÓN IDIOMA ----
+    const btnId = document.getElementById('btn-idioma');
+    if (btnId) btnId.onclick = cambiarIdioma;
+
+    // ---- DETECCIÓN AUTOMÁTICA DE IDIOMA ----
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang && !userLang.toLowerCase().startsWith('es')) {
+        cambiarIdioma(); // Cambia a EN (idiomaActual era 'es')
+    } else {
+        // Asegurar placeholder inicial en ES si no se cambia
+        const busq = document.getElementById('buscador');
+        if (busq) busq.placeholder = textos['es']['buscador-placeholder'];
+    }
+
     // ---- NAVEGACIÓN INICIAL (HASH) ----
     if (!window.location.hash || window.location.hash === '#ventana-abierta') {
         window.location.hash = 'pantalla-inicio';
@@ -298,19 +553,7 @@ function initApp() {
     }
 
     // ---- EFECTO TYPING (HERO) ----
-    const typedTextElement = document.getElementById('typed-text');
-    if (typedTextElement) {
-        const textToType = "Técnico en Mecatrónica Industrial (Nº1 Promoción) | Maker & I+D";
-        let charIndex = 0;
-        function typeWriter() {
-            if (charIndex < textToType.length) {
-                typedTextElement.textContent += textToType.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 40);
-            }
-        }
-        setTimeout(typeWriter, 600);
-    }
+    reiniciarTypewriter();
 
     // ---- PARTICLES.JS ----
     if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
