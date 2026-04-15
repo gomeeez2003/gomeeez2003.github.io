@@ -115,11 +115,32 @@ nav { background-color: var(--nav-bg); padding: 0.8rem 2rem; position: sticky; t
 .card-cat h3 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
 .card-cat p { color: var(--text-secondary); line-height: 1.5; }
 
-.card-proj { background-color: var(--bg-elevated); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--border-subtle); transition: all 0.3s; cursor: pointer; position: relative; color: var(--text-primary); text-decoration: none; text-align: left; }
+.card-proj { background-color: var(--bg-elevated); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--border-subtle); transition: all 0.3s; cursor: pointer; position: relative; color: var(--text-primary); text-decoration: none; text-align: left; overflow: hidden; }
 .card-proj:hover { transform: translateX(8px); border-left-color: var(--accent); animation: pulseGlow 2s infinite; }
-.card-proj h3 { color: var(--text-primary); margin: 0 0 0.5rem; }
-.card-proj p { color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; }
-.proj-tags { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+.card-proj h3 { color: var(--text-primary); margin: 0 0 0.5rem; position: relative; z-index: 2; }
+.card-proj p { color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; position: relative; z-index: 2; }
+.proj-tags { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.5rem; letter-spacing: 0.05em; position: relative; z-index: 2; }
+
+.card-number {
+    position: absolute;
+    bottom: -15px;
+    right: -10px;
+    font-size: 7.5rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.5s ease;
+}
+
+.card-proj:hover .card-number {
+    opacity: 0.08;
+    transform: scale(1.1) translateX(-10px);
+    color: var(--accent);
+}
 
 .btn-volver { display: inline-flex; align-items: center; margin-bottom: 2rem; padding: 0.5rem 1rem; background-color: var(--bg-elevated); color: var(--text-primary); border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
 .btn-volver:hover { background-color: var(--accent); color: #000; }
