@@ -818,3 +818,52 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
+
+// ---- PRELOADER TERMINAL ----
+const preloader = document.getElementById('preloader');
+const preloaderTerminal = document.getElementById('preloader-terminal');
+if (preloader && preloaderTerminal) {
+    if (!sessionStorage.getItem('preloaderShown')) {
+        document.body.style.overflow = 'hidden';
+        const lines = [
+            { text: "INIT SYSTEM SECURE BOOT...", ok: true },
+            { text: "LOADING MECHATRONICS KERNEL...", ok: true },
+            { text: "CALIBRATING KUKA ROBOTICS...", ok: true },
+            { text: "ACCESSING PORTFOLIO_DB...", ok: false }
+        ];
+
+        let termIndex = 0;
+        function printTermLine() {
+            if (termIndex < lines.length) {
+                const lineData = lines[termIndex];
+                const p = document.createElement('div');
+                p.className = 'term-line';
+                let content = `<span>> ${lineData.text}</span>`;
+                if (lineData.ok) {
+                    content += `<span class="term-ok">[OK]</span>`;
+                } else {
+                    content += `<span class="term-cursor"></span>`;
+                }
+                p.innerHTML = content;
+                preloaderTerminal.appendChild(p);
+                setTimeout(() => p.classList.add('show'), 10);
+                
+                termIndex++;
+                let delay = lineData.ok ? (Math.random() * 200 + 150) : 500;
+                setTimeout(printTermLine, delay);
+            } else {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 600);
+                }, 600);
+            }
+        }
+        setTimeout(printTermLine, 300);
+        sessionStorage.setItem('preloaderShown', 'true');
+    } else {
+        preloader.style.display = 'none';
+    }
+}
