@@ -532,7 +532,6 @@ a:focus-visible, button:focus-visible { outline: 2px dashed var(--accent); outli
     .contact-section { padding: 3rem 1rem; }
     .contact-title { font-size: 2rem; }
 }
-}
 
 /* ================================================
    PASO 3: PRELOADER TERMINAL
