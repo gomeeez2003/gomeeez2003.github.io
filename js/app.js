@@ -76,8 +76,6 @@ const textos = {
         'proj-caja-cerveza-desc': 'Vehículo de movilidad personal: patín eléctrico integrado en estructura de caja de cerveza.',
         'proj-patinete-titulo': 'Patinete para Niños Motorizado',
         'proj-patinete-desc': 'Integración mecánica de un motor de gasolina en un patinete infantil convencional.',
-        'proj-desmontaje-titulo': 'Desmontaje y Análisis de Máquina de Escribir',
-        'proj-desmontaje-desc': 'Análisis forense de micromecánica automatizada: desmontaje del carrete y control.',
         'proj-mecanizado-titulo': 'Trabajos de Mecanizado',
         'proj-mecanizado-desc': 'Procesos de mecanizado de piezas de precisión.',
         'cat-aditiva-header': 'Integración Mecatrónica y Sistemas',
@@ -133,8 +131,6 @@ const textos = {
         'modal-title-coche': 'Coche RC Inteligente',
         'modal-tag-extra': 'VARIOS',
         'modal-title-extra': 'Proyectos Extra',
-        'modal-tag-micromecanica': 'MICROMECÁNICA',
-        'modal-title-desmontaje': 'Desmontaje Máquina de Escribir',
         'modal-tag-mecanizado': 'MECÁNICA DE PRECISIÓN',
         'modal-title-mecanizado': 'Trabajos de Mecanizado',
         'modal-tag-optica': 'CIENCIA / ÓPTICA',
@@ -226,8 +222,6 @@ const textos = {
         'proj-caja-cerveza-desc': 'Personal mobility vehicle: electric scooter integrated into a beer crate structure.',
         'proj-patinete-titulo': 'Motorized Child Scooter',
         'proj-patinete-desc': 'Mechanical integration of a gasoline engine into a conventional child scooter.',
-        'proj-desmontaje-titulo': 'Typewriter Teardown and Analysis',
-        'proj-desmontaje-desc': 'Forensic analysis of automated micromechanics: spool and control teardown.',
         'proj-mecanizado-titulo': 'Machining Works',
         'proj-mecanizado-desc': 'Precision part machining processes.',
         'cat-aditiva-header': 'Mechatronics Integration and Systems',
@@ -283,8 +277,6 @@ const textos = {
         'modal-title-coche': 'Smart RC Car',
         'modal-tag-extra': 'VARIOUS',
         'modal-title-extra': 'Extra Projects',
-        'modal-tag-micromecanica': 'MICROMECHANICS',
-        'modal-title-desmontaje': 'Typewriter Teardown',
         'modal-tag-mecanizado': 'PRECISION MECHANICS',
         'modal-title-mecanizado': 'Machining Works',
         'modal-tag-optica': 'SCIENCE / OPTICS',
@@ -524,13 +516,7 @@ function initApp() {
             keys: 'patinete niños motorizado gasolina motor mecanica integracion', 
             action: () => abrirModalExtendido('tpl-patinete') 
         },
-        { 
-            title: { es: 'Desmontaje Máquina de Escribir', en: 'Typewriter Teardown' }, 
-            icon: '⌨️', 
-            breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
-            keys: 'desmontaje maquina escribir micromecánica automatizada carrete control analisis forense', 
-            action: () => abrirModalExtendido('tpl-desmontaje') 
-        },
+
         { 
             title: { es: 'Trabajos de Mecanizado', en: 'Machining Works' }, 
             icon: '🔧', 
