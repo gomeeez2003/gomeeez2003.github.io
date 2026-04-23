@@ -786,11 +786,40 @@ function initApp() {
                 move: { enable: true, speed: 1.4, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
             },
             interactivity: {
-                detect_on: 'canvas',
+                detect_on: 'window',
                 events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
                 modes: { grab: { distance: 200, line_linked: { opacity: 0.6 } }, push: { particles_nb: 3 } }
             },
             retina_detect: true
+        });
+
+        // Fix: override mouse position to be relative to the canvas, not the viewport.
+        // particles.js 'window' mode uses clientX/clientY which don't account for canvas offset.
+        // 'canvas' mode uses offsetX/offsetY which break on child elements over the canvas.
+        // This fix uses getBoundingClientRect() for accurate canvas-relative coordinates.
+        var pJSInstance = pJSDom[pJSDom.length - 1].pJS;
+        var particlesCanvas = pJSInstance.canvas.el;
+
+        window.addEventListener('mousemove', function(e) {
+            var rect = particlesCanvas.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            // Scale by pixel ratio if retina detection is active
+            if (pJSInstance.tmp.retina) {
+                x *= pJSInstance.canvas.pxratio;
+                y *= pJSInstance.canvas.pxratio;
+            }
+
+            pJSInstance.interactivity.mouse.pos_x = x;
+            pJSInstance.interactivity.mouse.pos_y = y;
+            pJSInstance.interactivity.status = 'mousemove';
+        });
+
+        window.addEventListener('mouseleave', function() {
+            pJSInstance.interactivity.mouse.pos_x = null;
+            pJSInstance.interactivity.mouse.pos_y = null;
+            pJSInstance.interactivity.status = 'mouseleave';
         });
     }
 
