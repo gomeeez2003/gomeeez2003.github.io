@@ -63,8 +63,7 @@ const textos = {
         'tag-rc': 'ARDUINO / RC',
         'tag-electronica-extra': 'ELECTRÓNICA / VARIOS',
         'tag-hv-vacio': 'ALTO VOLTAJE / VACÍO',
-        'tag-hv-nixie': 'ALTO VOLTAJE / NIXIE',
-        'tag-gases': 'GASES NOBLES / PLASMA',
+        'tag-hv-tubos': 'ALTO VOLTAJE / TUBOS DE VACÍO',
         'tag-optica': 'ÓPTICA / INVESTIGACIÓN',
         'cat-mecanica-header': 'Mecánica de Precisión y Ensamblaje',
         'cat-mecanica-subheader': 'Mecanizado, soldadura TIG/MIG, diseño estructural y montaje de tolerancias críticas en salas blancas.',
@@ -100,12 +99,10 @@ const textos = {
         'cat-ciencia-subheader': 'Sistemas de ultra alto vacío (UHV), equipos de Sputtering (PVD), física de plasma y optoelectrónica.',
         'proj-baragrafo-titulo': 'Barágrafo Nixie',
         'proj-baragrafo-desc': 'Experimentación técnica de alto voltaje con tubo barágrafo.',
-        'proj-neon-titulo': 'Tubos de Neón y Plasma',
-        'proj-neon-desc': 'Experimentos con descarga de gases en condiciones de baja presión.',
-        'proj-nixie-titulo': 'Tubos Nixie y Magic Eye',
-        'proj-nixie-desc': 'Experimentación con tubos de vacío clásicos para displays numéricos.',
+        'proj-tubos-titulo': 'Tubos de Vacío: Nixie, Neón y Magic Eye',
+        'proj-tubos-desc': 'Experimentación con tubos de vacío clásicos, descarga de gases nobles y displays numéricos vintage.',
         'proj-microscopio-titulo': 'Proyectos de Microscopía',
-        'proj-microscopio-desc': 'Modificación y mejora de sistemas ópticos para micro-fotografía científica.',
+        'proj-microscopio-desc': 'Modificación y mejora de sistemas ópticos para micro-fotografía científica',
         'turbici-main-h2': 'Turbici: Integración Turbina Jet',
         'turbici-main-p': 'PROYECTO DESTACADO',
         'turbici-card-mec-h3': '🔧 Ingeniería del Chasis',
@@ -139,10 +136,8 @@ const textos = {
         'modal-title-patinete': 'Patinete Motorizado',
         'modal-tag-baragrafo': 'ALTO VOLTAJE',
         'modal-title-baragrafo': 'Barágrafo Nixie',
-        'modal-tag-neon': 'ALTO VOLTAJE',
-        'modal-title-neon': 'Tubos de Neón',
-        'modal-tag-nixie': 'ALTO VOLTAJE',
-        'modal-title-nixie': 'Tubos Nixie Clásicos'
+        'modal-tag-tubos': 'ALTO VOLTAJE / TUBOS DE VACÍO',
+        'modal-title-tubos': 'Tubos de Vacío: Nixie, Neón y Magic Eye'
     },
     'en': {
         'nav-inicio': 'Home',
@@ -209,8 +204,7 @@ const textos = {
         'tag-rc': 'ARDUINO / RC',
         'tag-electronica-extra': 'ELECTRONICS / VARIOUS',
         'tag-hv-vacio': 'HIGH VOLTAGE / VACUUM',
-        'tag-hv-nixie': 'HIGH VOLTAGE / NIXIE',
-        'tag-gases': 'NOBLE GASES / PLASMA',
+        'tag-hv-tubos': 'HIGH VOLTAGE / VACUUM TUBES',
         'tag-optica': 'OPTICS / RESEARCH',
         'cat-mecanica-header': 'Precision Mechanics and Assembly',
         'cat-mecanica-subheader': 'Machining, TIG/MIG welding, structural design and critical tolerance assembly in clean rooms.',
@@ -246,10 +240,8 @@ const textos = {
         'cat-ciencia-subheader': 'Ultra-high vacuum systems (UHV), Sputtering equipment (PVD), plasma physics and optoelectronics.',
         'proj-baragrafo-titulo': 'Nixie Bargraph',
         'proj-baragrafo-desc': 'High voltage technical experimentation with bargraph tube.',
-        'proj-neon-titulo': 'Neon and Plasma Tubes',
-        'proj-neon-desc': 'Experiments with gas discharge under low pressure conditions.',
-        'proj-nixie-titulo': 'Nixie and Magic Eye Tubes',
-        'proj-nixie-desc': 'Experimentation with classic vacuum tubes for numerical displays.',
+        'proj-tubos-titulo': 'Vacuum Tubes: Nixie, Neon & Magic Eye',
+        'proj-tubos-desc': 'Experimentation with classic vacuum tubes, noble gas discharge and vintage numerical displays.',
         'proj-microscopio-titulo': 'Microscopy Projects',
         'proj-microscopio-desc': 'Modification and improvement of optical systems for scientific micro-photography.',
         'turbici-main-h2': 'Turbici: Jet Turbine Integration',
@@ -285,10 +277,8 @@ const textos = {
         'modal-title-patinete': 'Motorized Scooter',
         'modal-tag-baragrafo': 'HIGH VOLTAGE',
         'modal-title-baragrafo': 'Nixie Bargraph',
-        'modal-tag-neon': 'HIGH VOLTAGE',
-        'modal-title-neon': 'Neon Tubes',
-        'modal-tag-nixie': 'HIGH VOLTAGE',
-        'modal-title-nixie': 'Classic Nixie Tubes'
+        'modal-tag-tubos': 'HIGH VOLTAGE / VACUUM TUBES',
+        'modal-title-tubos': 'Vacuum Tubes: Nixie, Neon & Magic Eye'
     }
 };
 
@@ -581,18 +571,11 @@ function initApp() {
             action: () => abrirModalExtendido('tpl-baragrafo') 
         },
         { 
-            title: { es: 'Tubos de Neón', en: 'Neon Tubes' }, 
+            title: { es: 'Tubos de Vacío: Nixie, Neón y Magic Eye', en: 'Vacuum Tubes: Nixie, Neon & Magic Eye' }, 
             icon: '💡', 
             breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
-            keys: 'neon tubo gas alto voltaje visual luz plasma', 
-            action: () => abrirModalExtendido('tpl-tuboneon') 
-        },
-        { 
-            title: { es: 'Tubos Nixie y Magic Eye', en: 'Nixie Tubes & Magic Eye' }, 
-            icon: '🔢', 
-            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
-            keys: 'nixie magic eye tubo vacio display numerico coleccionismo vintage', 
-            action: () => abrirModalExtendido('tpl-tubonixie') 
+            keys: 'neon tubo gas alto voltaje visual luz plasma nixie magic eye vacio display numerico coleccionismo vintage', 
+            action: () => abrirModalExtendido('tpl-tubos-vacio') 
         },
         { 
             title: { es: 'Proyectos de Microscopía', en: 'Microscopy Projects' }, 
