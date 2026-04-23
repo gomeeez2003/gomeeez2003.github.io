@@ -105,6 +105,8 @@ const textos = {
         'proj-tubos-desc': 'Experimentación con tubos de vacío clásicos, descarga de gases nobles y displays numéricos vintage.',
         'proj-microscopio-titulo': 'Proyectos de Microscopía',
         'proj-microscopio-desc': 'Modificación y mejora de sistemas ópticos para micro-fotografía científica',
+        'proj-sputtering-titulo': 'Sistema de Sputtering y Alto Vacío',
+        'proj-sputtering-desc': 'Desarrollo de cámara PVD y restauración de bomba de difusión (UHV). PROYECTO EN CURSO.',
         'turbici-main-h2': 'Turbici: Integración Turbina Jet',
         'turbici-main-p': 'PROYECTO DESTACADO',
         'turbici-card-mec-h3': '🔧 Ingeniería del Chasis',
@@ -140,7 +142,8 @@ const textos = {
         'modal-title-baragrafo': 'Barágrafo Nixie',
         'modal-tag-tubos': 'ALTO VOLTAJE / TUBOS DE VACÍO',
         'modal-title-tubos': 'Tubos de Vacío: Nixie, Neón y Magic Eye',
-        'modal-title-micromecanica': 'Micromecánica'
+        'modal-title-micromecanica': 'Micromecánica',
+        'modal-title-sputtering': 'Cámara de Sputtering'
     },
     'en': {
         'nav-inicio': 'Home',
@@ -249,6 +252,8 @@ const textos = {
         'proj-tubos-desc': 'Experimentation with classic vacuum tubes, noble gas discharge and vintage numerical displays.',
         'proj-microscopio-titulo': 'Microscopy Projects',
         'proj-microscopio-desc': 'Modification and improvement of optical systems for scientific micro-photography.',
+        'proj-sputtering-titulo': 'Sputtering System and High Vacuum',
+        'proj-sputtering-desc': 'PVD chamber development and diffusion pump restoration (UHV). PROJECT IN PROGRESS.',
         'turbici-main-h2': 'Turbici: Jet Turbine Integration',
         'turbici-main-p': 'FEATURED PROJECT',
         'turbici-card-mec-h3': '🔧 Chassis Engineering',
@@ -283,7 +288,8 @@ const textos = {
         'modal-tag-baragrafo': 'HIGH VOLTAGE',
         'modal-title-baragrafo': 'Nixie Bargraph',
         'modal-tag-tubos': 'HIGH VOLTAGE / VACUUM TUBES',
-        'modal-title-tubos': 'Vacuum Tubes: Nixie, Neon & Magic Eye'
+        'modal-title-tubos': 'Vacuum Tubes: Nixie, Neon & Magic Eye',
+        'modal-title-sputtering': 'Sputtering Chamber'
     }
 };
 
@@ -595,6 +601,13 @@ function initApp() {
             breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
             keys: 'microscopio optica ciencia adaptacion mejora investigacion microscopy', 
             action: () => abrirModalExtendido('tpl-microscopio') 
+        },
+        { 
+            title: { es: 'Sistema de Sputtering y Alto Vacío', en: 'Sputtering System and High Vacuum' }, 
+            icon: '⚛️', 
+            breadcrumb: { es: 'Ciencia › Proyecto (modal)', en: 'Science › Project (modal)' },
+            keys: 'sputtering vacio bomba difusion uhv pvd id plasma recubrimiento', 
+            action: () => abrirModalExtendido('tpl-sputtering') 
         },
         { 
             title: { es: 'Inicio (Portfolio)', en: 'Home (Portfolio)' }, 
