@@ -77,6 +77,8 @@ const textos = {
         'proj-patinete-desc': 'Integración mecánica de un motor de gasolina en un patinete infantil convencional.',
         'proj-mecanizado-titulo': 'Trabajos de Mecanizado',
         'proj-mecanizado-desc': 'Procesos de mecanizado de piezas de precisión.',
+        'proj-micromecanica-titulo': 'Micromecánica: Minimotores Nitrometano',
+        'proj-micromecanica-desc': 'Estudio y mantenimiento de micromotores térmicos de alto rendimiento.',
         'cat-aditiva-header': 'Integración Mecatrónica y Sistemas',
         'cat-aditiva-subheader': 'Desarrollo de sistemas complejos, soft-robotics, automatización y ensamblaje de prototipos multidisciplinares.',
         'proj-pneumaflex-titulo': 'Pneumaflex: Actuadores Neumáticos Flexibles 3D',
@@ -137,7 +139,8 @@ const textos = {
         'modal-tag-baragrafo': 'ALTO VOLTAJE',
         'modal-title-baragrafo': 'Barágrafo Nixie',
         'modal-tag-tubos': 'ALTO VOLTAJE / TUBOS DE VACÍO',
-        'modal-title-tubos': 'Tubos de Vacío: Nixie, Neón y Magic Eye'
+        'modal-title-tubos': 'Tubos de Vacío: Nixie, Neón y Magic Eye',
+        'modal-title-micromecanica': 'Micromecánica'
     },
     'en': {
         'nav-inicio': 'Home',
@@ -218,6 +221,8 @@ const textos = {
         'proj-patinete-desc': 'Mechanical integration of a gasoline engine into a conventional child scooter.',
         'proj-mecanizado-titulo': 'Machining Works',
         'proj-mecanizado-desc': 'Precision part machining processes.',
+        'proj-micromecanica-titulo': 'Micromechanics: Nitromethane Mini-Engines',
+        'proj-micromecanica-desc': 'Study and maintenance of high-performance thermal micro-engines.',
         'cat-aditiva-header': 'Mechatronics Integration and Systems',
         'cat-aditiva-subheader': 'Development of complex systems, soft-robotics, automation and assembly of multidisciplinary prototypes.',
         'proj-pneumaflex-titulo': 'Pneumaflex: 3D Flexible Pneumatic Actuators',
@@ -513,6 +518,13 @@ function initApp() {
             breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
             keys: 'mecanizado precision piezas torno fresa fresado torneado', 
             action: () => abrirModalExtendido('tpl-mecanizado') 
+        },
+        { 
+            title: { es: 'Micromecánica: Minimotores Nitrometano', en: 'Micromechanics: Nitromethane Mini-Engines' }, 
+            icon: '🏎️', 
+            breadcrumb: { es: 'Mecánica › Proyecto (modal)', en: 'Mechanics › Project (modal)' },
+            keys: 'micromecanica motor nitrometano gasolina rc mini motor combustion', 
+            action: () => abrirModalExtendido('tpl-micromecanica') 
         },
         { 
             title: { es: 'Pneumaflex: Actuadores Neumáticos 3D', en: 'Pneumaflex: 3D Pneumatic Actuators' }, 
